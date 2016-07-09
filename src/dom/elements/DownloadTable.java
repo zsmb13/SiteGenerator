@@ -1,9 +1,11 @@
 package dom.elements;
 
 import io.HTMLWriter;
+import io.MarkdownReader;
 import resources.ResourceFetcher;
 import resources.StringLists;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +14,19 @@ import java.util.List;
  */
 public class DownloadTable implements Element {
 
-    private List<DownloadItem> items = new ArrayList<>();
+    private List<DownloadItem> items;
 
-    public DownloadTable(List<String> lines) {
-        //TODO implement
-        //TODO check lenghts, call DownloadItem ctors with sublists()
+    public DownloadTable(List<DownloadItem> items) {
+        this.items = items;
     }
 
     public static DownloadTable create(String firstLine) {
-        //TODO implement
-        return null;
+        ArrayList<DownloadItem> items = new ArrayList<>();
+        while(firstLine.equals("%")) {
+            items.add(new DownloadItem());
+            firstLine = MarkdownReader.readLine();
+        }
+        return new DownloadTable(items);
     }
 
     @Override

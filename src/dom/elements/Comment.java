@@ -14,8 +14,8 @@ public class Comment implements Element {
     }
 
     public static Comment create(String firstLine) {
-        //TODO implement
-        return null;
+        String commentText = firstLine.substring(2).trim();
+        return new Comment(commentText);
     }
 
     @Override

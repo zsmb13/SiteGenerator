@@ -26,6 +26,7 @@ public abstract class Page {
     protected String sitePath;
     protected String url;
     protected boolean hasBanner = false;
+    protected boolean containsCode = false;
 
     public Page(File sourceFile) {
         sections = MarkdownReader.readSections(sourceFile);
@@ -51,13 +52,17 @@ public abstract class Page {
 
         TemplateWriter.write(1);
 
-        HTMLWriter.writeLine(ResourceFetcher.getString(
-                Strings.CodeHighlightStylesheet));
+        if(containsCode) {
+            HTMLWriter.writeLine(ResourceFetcher.getString(
+                    Strings.CodeHighlightStylesheet));
+        }
 
         TemplateWriter.write(2);
 
-        HTMLWriter.writeLines(ResourceFetcher.getStringList(
-                StringLists.CodeHighlightScript));
+        if(containsCode) {
+            HTMLWriter.writeLines(ResourceFetcher.getStringList(
+                    StringLists.CodeHighlightScript));
+        }
 
         if (hasBanner) {
             writeBanner();
