@@ -22,7 +22,7 @@ public class List implements Element {
     public void writeHTML() {
         HTMLWriter.writeLine(ordered ? "<ol>" : "<ul>");
 
-
+        HTMLWriter.writeLines(entries);
 
         HTMLWriter.writeLine(ordered ? "</ol>" : "</ul>");
     }

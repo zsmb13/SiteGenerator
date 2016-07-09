@@ -2,11 +2,16 @@ package dom.roots;
 
 import dom.elements.Section;
 import io.HTMLWriter;
+import io.MarkdownReader;
 import io.TemplateWriter;
 import resources.ResourceFetcher;
 import resources.StringLists;
 import resources.Strings;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +20,7 @@ import java.util.List;
  */
 public abstract class Page {
     // Contents
-    protected List<Section> sections = new ArrayList<>();
+    protected List<Section> sections;
     // Properties
     protected String fileName;
     protected String title;
@@ -33,7 +38,12 @@ public abstract class Page {
     }
 
     protected abstract String createURL();
+
     protected abstract String createSitePath();
+
+    public Page(File sourceFile) {
+        sections = MarkdownReader.readSections(sourceFile);
+    }
 
     public void write() {
         HTMLWriter.prepareToWrite(this);
@@ -53,7 +63,7 @@ public abstract class Page {
         HTMLWriter.writeLines(ResourceFetcher.getStringList(
                 StringLists.CodeHighlightScript));
 
-        if(hasBanner) {
+        if (hasBanner) {
             writeBanner();
         }
 
