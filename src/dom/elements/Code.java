@@ -1,8 +1,11 @@
 package dom.elements;
 
 import io.HTMLWriter;
+import io.MarkdownReader;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -17,13 +20,34 @@ public class Code implements Element {
         lines.add(0, "<pre><code class=\"" + language + "\">");
         lines.add("</code></pre>");
         this.lines = lines;
-
         this.language = language;
     }
 
+    private static String[] languages = {"c", "cpp", "cs", "java"};
+
     public static Code create(String firstLine) {
-        //TODO implement
-        return null;
+        String pieces[] = firstLine.split("\\{");
+        String language = pieces[0].trim();
+        String lastLine = null;
+
+        for(String lang : languages) {
+            if(lang.equals(language)) {
+                lastLine = "}" + lang;
+                break;
+            }
+        }
+
+        if(lastLine == null) {
+            return null;
+        }
+
+        ArrayList<String> lines = new ArrayList<>();
+        String line;
+        while(!(line = MarkdownReader.readLine()).equals(lastLine)) {
+            lines.add(line);
+        }
+
+        return new Code(lines, language);
     }
 
     @Override
