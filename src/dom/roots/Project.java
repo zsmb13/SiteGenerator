@@ -5,9 +5,9 @@ import java.io.File;
 /**
  * Created by zsmb on 2016-07-07.
  */
-public class Article extends Page {
+public class Project extends Page {
 
-    public Article(File sourceFile) {
+    public Project(File sourceFile) {
         // TODO implement
     }
 

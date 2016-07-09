@@ -2,7 +2,10 @@ package io;
 
 import dom.roots.Page;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -36,6 +39,16 @@ public class HTMLWriter {
         HTMLWriter.indentation = indentation;
     }
 
+    public static void indent() {
+        indentation++;
+    }
+
+    public static void unindent() {
+        if(indentation > 0) {
+            indentation--;
+        }
+    }
+
     public static void writeLine(String line) {
         writeLine(line, true);
     }
@@ -50,6 +63,16 @@ public class HTMLWriter {
         }
         else {
             pw.println(line);
+        }
+    }
+
+    public static void writeLines(List<String> lines) {
+        writeLines(lines, true);
+    }
+
+    public static void writeLines(List<String> lines, boolean indent) {
+        for(String line : lines) {
+            writeLine(line, indent);
         }
     }
 

@@ -5,5 +5,6 @@ package resources;
  */
 public enum StringLists {
     DLTableFooter,
-    DLTableHeader
+    DLTableHeader,
+    CodeHighlightScript
 }
