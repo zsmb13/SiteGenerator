@@ -21,10 +21,15 @@ public class Code implements Element {
         this.language = language;
     }
 
+    public static Code create(String firstLine) {
+        //TODO implement
+        return null;
+    }
+
     @Override
     public void writeHTML() {
         HTMLWriter.writeLine("<pre><code class=\"" + language + "\">");
-        for(String l : lines) {
+        for (String l : lines) {
             HTMLWriter.writeLine(l, false);
         }
         HTMLWriter.writeLine("</code></pre>");

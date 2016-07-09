@@ -8,6 +8,7 @@ import java.io.File;
 public class Article extends Page {
 
     public Article(File sourceFile) {
+        super(sourceFile);
         // TODO implement
     }
 

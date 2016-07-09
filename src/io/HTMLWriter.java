@@ -13,17 +13,16 @@ import java.util.List;
 public class HTMLWriter {
 
     private static int indentation = 0;
+    private static PrintWriter pw;
 
     private static String getIndentation() {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < indentation; i++) {
+        for (int i = 0; i < indentation; i++) {
             sb.append("\t");
         }
 
         return sb.toString();
     }
-
-    private static PrintWriter pw;
 
     public static void prepareToWrite(Page p) {
         String filename = p.getFileName();
@@ -44,7 +43,7 @@ public class HTMLWriter {
     }
 
     public static void unindent() {
-        if(indentation > 0) {
+        if (indentation > 0) {
             indentation--;
         }
     }
@@ -54,11 +53,11 @@ public class HTMLWriter {
     }
 
     public static void writeLine(String line, boolean indent) {
-        if(pw == null) {
+        if (pw == null) {
             //TODO handle error gently
         }
 
-        if(indent) {
+        if (indent) {
             pw.println(getIndentation() + line);
         }
         else {
@@ -71,7 +70,7 @@ public class HTMLWriter {
     }
 
     public static void writeLines(List<String> lines, boolean indent) {
-        for(String line : lines) {
+        for (String line : lines) {
             writeLine(line, indent);
         }
     }

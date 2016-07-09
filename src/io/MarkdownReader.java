@@ -1,14 +1,12 @@
 package io;
 
-import dom.elements.Section;
+import dom.elements.*;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -18,6 +16,11 @@ public class MarkdownReader {
     private static BufferedReader br;
     private static ArrayList<Section> sections;
 
+    /**
+     * Returns the next line of the file currently being parsed
+     *
+     * @return the line
+     */
     public static String readLine() {
         try {
             return br.readLine();
@@ -28,7 +31,13 @@ public class MarkdownReader {
         }
     }
 
-    public static List<Section> readSections(File sourceFile) {
+    /**
+     * Processes a given file
+     *
+     * @param sourceFile the given file
+     * @return the contents read
+     */
+    public static java.util.List<Section> readSections(File sourceFile) {
         sections = new ArrayList<>();
 
         try {
@@ -40,74 +49,92 @@ public class MarkdownReader {
 
         String line;
         while ((line = readLine()) != null) {
-            boolean result = parseSingleChar(line);
-            if(!result) {
-                // Nothing special, just a paragraph
-                // ...
+            if (line.isEmpty()) {
+                // Throw away empty lines
+                continue;
             }
+
+            Element e = parseSingleChar(line);
+            if (e == null) {
+                // Nothing special, just a paragraph
+                e = Paragraph.create(line);
+            }
+
+            if (sections.isEmpty()) {
+                // This should not happen, as every page is supposed to start with a header
+                sections.add(new Section(sections.size()));
+            }
+            sections.get(sections.size() - 1).add(e);
         }
 
         return sections;
     }
 
-    private static boolean parseSingleChar(String line) {
+    /**
+     * Parses elements of the page that are denoted by a single starting character
+     *
+     * @param line the line that starts the next element
+     * @return the parsed element
+     */
+    private static Element parseSingleChar(String line) {
         // TODO fill out all these
         switch (line.charAt(0)) {
             case '[':
                 // image
-                // ...
-                return true;
+                return Image.create(line);
             case '-':
                 // ul
-                // ...
-                return true;
+                return List.create(line);
             case '#':
             case '@':
                 // header
-                // TODO start new section here
-                // check if it's a promoted header that marks description
-                // ...
-                return true;
+                sections.add(new Section(sections.size()));
+                return Header.create(line);
             case '%':
                 // dltable
-                // ...
-                return true;
+                return DownloadTable.create(line);
             default:
                 // something more complicated
                 return parseComplex(line);
         }
     }
 
-    private static boolean parseComplex(String line) {
+    /**
+     * Parses elements of the page that are harder to recognise
+     *
+     * @param line the line that starts the next element
+     * @return the parsed element
+     */
+    private static Element parseComplex(String line) {
         // TODO fill out all these
-        if(line.startsWith("//")) {
+        if (line.startsWith("//")) {
             // Comment
             // This should just throw away the line instead of inserting a HTML comment
             // as that was the implementation in the previous code
-            // ...
-            return true;
+            return Comment.create(line);
+            //return null;
+            //TODO switch commented state of the above two lines before release
         }
-        else if(line.endsWith("{")) {
+        else if (line.endsWith("{")) {
             // Code, but maybe just a paragraph, don't forget to check
-            // ...
-            return true;
+            // Update: actually, this will return null if it's not code, so we're fine
+            return Code.create(line);
         }
-        else if(line.contains(".")) {
+        else if (line.contains(".")) {
             String[] pieces = line.split("\\.");
 
             try {
                 Integer.parseInt(pieces[0]);
                 // Ordered list
-                // ...
-                return true;
+                return List.create(line);
             } catch (NumberFormatException e) {
-                // not a number before the first '.'
-                return false;
+                // Not a number before the first '.'
+                return null;
             }
         }
 
         // I don't think this statement is reachable but IntelliJ likes it when it's here
-        return false;
+        return null;
     }
 
 }

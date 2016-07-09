@@ -13,9 +13,14 @@ public class List implements Element {
     private java.util.List<String> entries = new ArrayList<>();
 
     public List(java.util.List<String> entries) {
-        for(String e : entries) {
+        for (String e : entries) {
             this.entries.add("<li>" + e + "</li>");
         }
+    }
+
+    public static Image create(String firstLine) {
+        //TODO implement
+        return null;
     }
 
     @Override

@@ -19,20 +19,25 @@ public class DownloadTable implements Element {
         //TODO check lenghts, call DownloadItem ctors with sublists()
     }
 
+    public static DownloadTable create(String firstLine) {
+        //TODO implement
+        return null;
+    }
+
     @Override
     public void writeHTML() {
         List<String> header = ResourceFetcher.getStringList(StringLists.DLTableHeader);
         List<String> footer = ResourceFetcher.getStringList(StringLists.DLTableFooter);
 
-        for(String s : header) {
+        for (String s : header) {
             HTMLWriter.writeLine(s);
         }
 
-        for(DownloadItem di : items) {
+        for (DownloadItem di : items) {
             di.writeHTML();
         }
 
-        for(String s : footer) {
+        for (String s : footer) {
             HTMLWriter.writeLine(s);
         }
     }

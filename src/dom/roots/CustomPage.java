@@ -1,7 +1,26 @@
 package dom.roots;
 
+import java.io.File;
+
 /**
  * Created by zsmb on 2016-07-07.
  */
-public class CustomPage {
+public class CustomPage extends Page {
+
+    public CustomPage(File sourceFile) {
+        //TODO
+        super(sourceFile);
+    }
+
+    @Override
+    protected String createURL() {
+        //TODO
+        return null;
+    }
+
+    @Override
+    protected String createSitePath() {
+        //TODO
+        return null;
+    }
 }

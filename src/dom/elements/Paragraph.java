@@ -6,7 +6,7 @@ import io.TextHelper;
 /**
  * Created by zsmb on 2016-07-07.
  */
-public class Paragraph implements Element{
+public class Paragraph implements Element {
 
     private String text;
 
@@ -14,9 +14,13 @@ public class Paragraph implements Element{
         this.text = TextHelper.process(text);
     }
 
+    public static Image create(String firstLine) {
+        //TODO implement
+        return null;
+    }
+
     @Override
     public void writeHTML() {
         HTMLWriter.writeLine("<p>" + text + "</p>");
     }
-
 }

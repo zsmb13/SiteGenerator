@@ -13,9 +13,13 @@ public class Comment implements Element {
         this.text = text;
     }
 
+    public static Comment create(String firstLine) {
+        //TODO implement
+        return null;
+    }
+
     @Override
     public void writeHTML() {
         HTMLWriter.writeLine("<!-- " + text + " -->");
     }
-
 }

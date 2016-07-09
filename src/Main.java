@@ -13,7 +13,7 @@ import java.util.List;
 public class Main {
 
     private static List<File> getSourceFilesFromDir(File directory) {
-        if(!directory.exists() || !directory.isDirectory()) {
+        if (!directory.exists() || !directory.isDirectory()) {
             // TODO error handling
             return null;
         }
@@ -32,13 +32,13 @@ public class Main {
         List<Project> abandonedProjects = new ArrayList<>();
         List<Project> completedProjects = new ArrayList<>();
 
-        for(File f : articleFiles) {
+        for (File f : articleFiles) {
             articles.add(new Article(f));
         }
-        for(File f : abandonedProjectFiles) {
+        for (File f : abandonedProjectFiles) {
             abandonedProjects.add(new Project(f));
         }
-        for(File f : completedProjectFiles) {
+        for (File f : completedProjectFiles) {
             completedProjects.add(new Project(f));
         }
 
@@ -47,7 +47,7 @@ public class Main {
         pages.addAll(abandonedProjects);
         pages.addAll(completedProjects);
 
-        for(Page p : pages) {
+        for (Page p : pages) {
             p.write();
         }
     }

@@ -16,9 +16,13 @@ public class Header implements Element {
         this.size = size;
     }
 
+    public static Header create(String firstLine) {
+        //TODO implement
+        return null;
+    }
+
     @Override
     public void writeHTML() {
         HTMLWriter.writeLine("<h" + size + ">" + text + "</h" + size + ">");
     }
-
 }

@@ -21,7 +21,7 @@ public class TemplateWriter {
         if (templates == null) {
             prepareTemplates();
         }
-        if(templateID >= templates.size() || templateID < 0) {
+        if (templateID >= templates.size() || templateID < 0) {
             // TODO handle error
         }
 
@@ -49,7 +49,7 @@ public class TemplateWriter {
             List<String> currentLines = new ArrayList<>();
             String line;
             while ((line = br.readLine()) != null) {
-                if(line.equals("***")) {
+                if (line.equals("***")) {
                     // end of a template
                     templates.add(new Template(currentLines));
                     currentLines.clear();
@@ -74,7 +74,7 @@ public class TemplateWriter {
         }
 
         public void writeHTML() {
-            for(String l : lines) {
+            for (String l : lines) {
                 HTMLWriter.writeLine(l, false);
             }
         }

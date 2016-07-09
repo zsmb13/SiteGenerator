@@ -8,11 +8,7 @@ import resources.ResourceFetcher;
 import resources.StringLists;
 import resources.Strings;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +27,10 @@ public abstract class Page {
     protected String url;
     protected boolean hasBanner = false;
 
+    public Page(File sourceFile) {
+        sections = MarkdownReader.readSections(sourceFile);
+    }
+
     public String getFileName() {
         // TODO implements things here
         // TODO This is a placeholder function
@@ -40,10 +40,6 @@ public abstract class Page {
     protected abstract String createURL();
 
     protected abstract String createSitePath();
-
-    public Page(File sourceFile) {
-        sections = MarkdownReader.readSections(sourceFile);
-    }
 
     public void write() {
         HTMLWriter.prepareToWrite(this);
