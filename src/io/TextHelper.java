@@ -62,13 +62,28 @@ public class TextHelper {
     private static String createLinkHTML(String text, String link, String icon, String hover) {
         boolean isExternal = link.charAt(0) != '/';
 
+        if(icon == null) {
+            icon = isExternal ? "fa-external-link" : "fa-link";
+        }
+        if(hover == null) {
+            hover = link;
+        }
+
         int firstSpace = text.indexOf(' ');
-        //TODO check if this is working and is indexed right
-        String firstWord = text.substring(0, firstSpace - 1);
-        String restOfText = text.substring(firstSpace + 1);
+        String firstWord;
+        String restOfText;
+
+        if(firstSpace == -1) {
+            firstWord = text;
+            restOfText = "";
+        }
+        else {
+            firstWord = text.substring(0, firstSpace);
+            restOfText = text.substring(firstSpace);
+        }
 
         return "<a href=\"" + link + "\" " +
-                (hover.isEmpty() ? "" : "title = \"" + hover + "\" ") +
+                "title=\"" + hover + "\" " +
                 (isExternal ? "target=\"blank\" " : "") +
                 "><span class=\"nowrap\">" +
                 "<i class=\"fa " + icon + "\"></i>&nbsp;" +

@@ -87,7 +87,6 @@ public class MarkdownReader {
      * @return the parsed element
      */
     private static Element parseSingleChar(String line) {
-        // TODO fill out all these
         switch (line.charAt(0)) {
             case '[':
                 // image

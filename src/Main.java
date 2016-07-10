@@ -1,6 +1,7 @@
 import dom.roots.Article;
 import dom.roots.Page;
 import dom.roots.Project;
+import io.TextHelper;
 import resources.ResourceFetcher;
 import resources.StringLists;
 import resources.Strings;
@@ -56,6 +57,5 @@ public class Main {
     }*/
 
     public static void main(String[] args) {
-        System.out.println(ResourceFetcher.getStringList(StringLists.Languages));
     }
 }
