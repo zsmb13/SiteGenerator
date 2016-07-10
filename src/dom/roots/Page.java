@@ -76,8 +76,8 @@ public abstract class Page {
     }
 
     public void setDate(String date) {
-        //TODO validate
-        this.date = date;
+        String[] pieces = date.split(" ");
+        this.date = pieces[0] + "." + pieces[1] + "." + pieces[2] + ".";
     }
 
 
