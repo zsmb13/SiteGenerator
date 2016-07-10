@@ -16,23 +16,76 @@ import java.util.List;
  * Created by zsmb on 2016-07-07.
  */
 public abstract class Page {
+
     // Contents
     protected List<Section> sections;
-    // Properties
+
+    // Private properties
     protected String fileName;
-    protected String title;
-    protected String date;
-    protected String shortTitle;
-    protected String description;
-    protected List<Category> categories;
-    protected String sitePath;
-    protected String url;
     protected boolean hasBanner = false;
-    protected boolean containsCode = false;
+    private String sitePath;
+    private String url;
+
+    // Settable properties
+    private String description = null;
+    private String date = null;
+    private String title = null;
+    private String shortTitle = null;
+    private String language = null;
+
+    private List<Category> categories = null;
+
+    private boolean containsCode = false;
+    private boolean post = false;
+
+    // Public static properties
     public static boolean grabDescription = false;
+    public static Page current = null;
+
+    // Setters
+    public void setShortTitle(String shortTitle) {
+        this.shortTitle = shortTitle;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setCategories(List<Category> categories) {
+        //TODO maybe check?
+        this.categories = categories;
+    }
+
+    public void setDescription(String description) {
+        grabDescription = false;
+        this.description = description;
+    }
+
+    public void setContainsCode(boolean containsCode) {
+        this.containsCode = containsCode;
+    }
+
+    public void setPost(boolean post) {
+        this.post = post;
+    }
+
+    public void setLanguage(String language) {
+        if(ResourceFetcher.getStringList(StringLists.Languages).contains(language)) {
+            this.language = language;
+        }
+    }
+
+    public void setDate(String date) {
+        //TODO validate
+        this.date = date;
+    }
+
 
     public Page(File sourceFile) {
+        current = this;
+
         sections = MarkdownReader.readSections(sourceFile);
+
         sitePath = createSitePath();
         url = createURL();
     }

@@ -41,6 +41,10 @@ public class MarkdownReader {
         cachedLines.add(toCache);
     }
 
+    public static void readPageProps(File sourceFile) {
+
+    }
+
     /**
      * Processes a given file
      *
@@ -75,6 +79,13 @@ public class MarkdownReader {
                 sections.add(new Section(sections.size()));
             }
             sections.get(sections.size() - 1).add(e);
+        }
+
+        try {
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //TODO error handling
         }
 
         return sections;

@@ -1,13 +1,12 @@
 package dom.elements;
 
+import dom.roots.Page;
 import io.HTMLWriter;
 import io.MarkdownReader;
 import resources.ResourceFetcher;
 import resources.StringLists;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,6 +14,8 @@ import java.util.List;
  */
 public class Code implements Element {
 
+    //private static String[] languages = {"c", "cpp", "cs", "java"};
+    private static List<String> languages = ResourceFetcher.getStringList(StringLists.Languages);
     private List<String> lines = new ArrayList<>();
     private String language;
 
@@ -25,29 +26,27 @@ public class Code implements Element {
         this.language = language;
     }
 
-    //private static String[] languages = {"c", "cpp", "cs", "java"};
-    private static List<String> languages = ResourceFetcher.getStringList(StringLists.Languages);
-
     public static Code create(String firstLine) {
         String pieces[] = firstLine.split("\\{");
         String language = pieces[0].trim();
         String lastLine = null;
 
-        if(languages.contains(language)) {
+        if (languages.contains(language)) {
             lastLine = "}" + language;
         }
 
-        if(lastLine == null) {
+        if (lastLine == null) {
             //TODO error handling
             return null;
         }
 
         ArrayList<String> lines = new ArrayList<>();
         String line;
-        while(!(line = MarkdownReader.readLine()).equals(lastLine)) {
+        while (!(line = MarkdownReader.readLine()).equals(lastLine)) {
             lines.add(line);
         }
 
+        Page.current.setContainsCode(true);
         return new Code(lines, language);
     }
 

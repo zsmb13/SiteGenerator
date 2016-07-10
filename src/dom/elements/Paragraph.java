@@ -19,7 +19,7 @@ public class Paragraph implements Element {
         String text = TextHelper.process(firstLine);
 
         if(Page.grabDescription) {
-            //TODO set current page's description to 'text'
+            Page.current.setDescription(TextHelper.stripHTML(text));
         }
 
         return new Paragraph(text);
