@@ -1,5 +1,7 @@
 package dom.elements;
 
+import dom.roots.Page;
+import io.HTMLWriter;
 import io.MarkdownReader;
 
 /**
@@ -12,8 +14,11 @@ public class DownloadItem implements Element {
     private String size;
     private String date;
 
+    private Page page;
+
     public DownloadItem() {
-        //TODO get current page's sitepath as it will be needed in  the writeHTML function
+        page = Page.current;
+
         filename = MarkdownReader.readLine();
         description = MarkdownReader.readLine();
         size = MarkdownReader.readLine();
@@ -22,7 +27,19 @@ public class DownloadItem implements Element {
 
     @Override
     public void writeHTML() {
-        //TODO implement
+        HTMLWriter.writeLine("<tr>");
+        HTMLWriter.writeLine("<td class=\"dlcolumn\"><a href=\""
+                + page.getUrl() + filename
+                + "\"><i class=\"fa fa-download\"></i></a></td>");
+        writeCell(filename);
+        writeCell(description);
+        writeCell(size);
+        writeCell(date);
+        HTMLWriter.writeLine("</tr>");
+    }
+
+    private void writeCell(String content) {
+        HTMLWriter.writeLine("<td>" + content + "</td>");
     }
 
 }

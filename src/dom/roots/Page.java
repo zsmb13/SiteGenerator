@@ -102,6 +102,10 @@ public abstract class Page {
         return sitePath;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     protected abstract String createURL();
 
     protected abstract String createSitePath();

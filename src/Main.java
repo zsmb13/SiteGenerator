@@ -59,7 +59,10 @@ public class Main {
     }*/
 
     public static void main(String[] args) {
-        Project p = new Project(new File(ResourceFetcher.getString(Strings.SourceDir) + "tetris.txt"));
-        p.write();
+        /*Project p = new Project(new File(ResourceFetcher.getString(Strings.SourceDir) + "tetris.txt"));
+        p.write();*/
+
+        Article a = new Article(new File(ResourceFetcher.getString(Strings.SourceDir) + "codelite_sdl2_setup.txt"));
+        a.write();
     }
 }

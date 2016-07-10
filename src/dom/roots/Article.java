@@ -17,12 +17,12 @@ public class Article extends Page {
 
     @Override
     protected String createURL() {
-        return sitePath + TextHelper.hyphenate(shortTitle) + "/";
+        return "/" + sitePath + TextHelper.hyphenate(shortTitle) + "/";
     }
 
     @Override
     protected String createSitePath() {
-        return "/articles/";
+        return "articles/";
     }
 
     @Override

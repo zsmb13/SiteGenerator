@@ -1,4 +1,6 @@
-package dom.roots;
+package dom.roots.custom;
+
+import dom.roots.Page;
 
 import java.io.File;
 
