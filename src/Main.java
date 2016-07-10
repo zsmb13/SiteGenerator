@@ -1,6 +1,9 @@
 import dom.roots.Article;
 import dom.roots.Page;
 import dom.roots.Project;
+import resources.ResourceFetcher;
+import resources.StringLists;
+import resources.Strings;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +24,7 @@ public class Main {
         return Arrays.asList(directory.listFiles());
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         // Get source files
         // TODO? make this more generic and customizable
         List<File> articleFiles = getSourceFilesFromDir(new File("articles/"));
@@ -50,5 +53,9 @@ public class Main {
         for (Page p : pages) {
             p.write();
         }
+    }*/
+
+    public static void main(String[] args) {
+        System.out.println(ResourceFetcher.getStringList(StringLists.Languages));
     }
 }

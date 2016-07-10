@@ -1,5 +1,7 @@
 package dom.roots;
 
+import io.TextHelper;
+
 import java.io.File;
 
 /**
@@ -9,18 +11,17 @@ public class Article extends Page {
 
     public Article(File sourceFile) {
         super(sourceFile);
-        // TODO implement
+
+        hasBanner = true;
     }
 
     @Override
     protected String createURL() {
-        // TODO implement
-        return null;
+        return sitePath + TextHelper.hyphenate(shortTitle) + "/";
     }
 
     @Override
     protected String createSitePath() {
-        // TODO implement
-        return null;
+        return "/articles/";
     }
 }

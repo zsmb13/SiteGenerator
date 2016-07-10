@@ -2,6 +2,8 @@ package dom.elements;
 
 import io.HTMLWriter;
 import io.MarkdownReader;
+import resources.ResourceFetcher;
+import resources.StringLists;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,21 +25,20 @@ public class Code implements Element {
         this.language = language;
     }
 
-    private static String[] languages = {"c", "cpp", "cs", "java"};
+    //private static String[] languages = {"c", "cpp", "cs", "java"};
+    private static List<String> languages = ResourceFetcher.getStringList(StringLists.Languages);
 
     public static Code create(String firstLine) {
         String pieces[] = firstLine.split("\\{");
         String language = pieces[0].trim();
         String lastLine = null;
 
-        for(String lang : languages) {
-            if(lang.equals(language)) {
-                lastLine = "}" + lang;
-                break;
-            }
+        if(languages.contains(language)) {
+            lastLine = "}" + language;
         }
 
         if(lastLine == null) {
+            //TODO error handling
             return null;
         }
 

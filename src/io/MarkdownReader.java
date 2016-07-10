@@ -116,7 +116,6 @@ public class MarkdownReader {
      * @return the parsed element
      */
     private static Element parseComplex(String line) {
-        // TODO fill out all these
         if (line.startsWith("//")) {
             // Comment
             // This should just throw away the line instead of inserting a HTML comment

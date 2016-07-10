@@ -13,11 +13,11 @@ public class TextHelper {
         Pattern linkPattern = Pattern.compile(link);
 
         boolean hasLink = true;
-        while(hasLink) {
+        while (hasLink) {
             Matcher matcher = linkPattern.matcher(s);
             hasLink = matcher.find();
 
-            if(hasLink) {
+            if (hasLink) {
                 s = processLink(matcher);
             }
         }
@@ -26,11 +26,11 @@ public class TextHelper {
         Pattern iconPattern = Pattern.compile(icon);
 
         boolean hasIcon = true;
-        while(hasIcon) {
+        while (hasIcon) {
             Matcher matcher = iconPattern.matcher(s);
             hasIcon = matcher.find();
 
-            if(hasIcon) {
+            if (hasIcon) {
                 s = processIcon(matcher);
             }
         }
@@ -64,8 +64,8 @@ public class TextHelper {
 
         int firstSpace = text.indexOf(' ');
         //TODO check if this is working and is indexed right
-        String firstWord = text.substring(0, firstSpace-1);
-        String restOfText = text.substring(firstSpace+1);
+        String firstWord = text.substring(0, firstSpace - 1);
+        String restOfText = text.substring(firstSpace + 1);
 
         return "<a href=\"" + link + "\" " +
                 (hover.isEmpty() ? "" : "title = \"" + hover + "\" ") +
@@ -84,4 +84,34 @@ public class TextHelper {
         return s;
     }
 
+    public static String simplify(String s) {
+        String temp = "";
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (isAlphaNum(c)) {
+                temp = temp + c;
+            }
+        }
+        return temp.toLowerCase();
+    }
+
+    private static boolean isAlphaNum(char c) {
+        return ('a' <= c && c <= 'z')
+                || ('A' <= c && c <= 'Z')
+                || ('0' <= c && c <= '9');
+    }
+
+    public static String hyphenate(String s) {
+        String temp = "";
+        for(int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if(isAlphaNum(c)) {
+                temp = temp + c;
+            }
+            else if(c == ' ' || c == '-' || c == '_') {
+                temp = temp + '-';
+            }
+        }
+        return temp.toLowerCase();
+    }
 }

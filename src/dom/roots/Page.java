@@ -4,6 +4,7 @@ import dom.elements.Section;
 import io.HTMLWriter;
 import io.MarkdownReader;
 import io.TemplateWriter;
+import io.TextHelper;
 import resources.ResourceFetcher;
 import resources.StringLists;
 import resources.Strings;
@@ -20,6 +21,7 @@ public abstract class Page {
     // Properties
     protected String fileName;
     protected String title;
+    protected String date;
     protected String shortTitle;
     protected String description;
     protected List<Category> categories;
@@ -31,6 +33,8 @@ public abstract class Page {
 
     public Page(File sourceFile) {
         sections = MarkdownReader.readSections(sourceFile);
+        sitePath = createSitePath();
+        url = createURL();
     }
 
     public String getFileName() {
@@ -77,7 +81,16 @@ public abstract class Page {
     }
 
     private void writeBanner() {
-        //TODO implement
+        HTMLWriter.writeLine("<section id =\"content_header\">");
+        HTMLWriter.writeLine("<h2 id=\"title\">" + title + "</h2>");
+
+        HTMLWriter.writeLine("<h5 id=\"date\"><i class=\"fa fa-calendar-o\"></i>@nbsp;");
+        HTMLWriter.writeLine(date);
+        HTMLWriter.writeLine("</h5>");
+
+        HTMLWriter.writeLine("<img id=\"banner\" src=\"/images/"
+                + TextHelper.simplify(shortTitle) + "_ban.png\"" + title + "\">");
+        HTMLWriter.writeLine("</section>");
     }
 
 }

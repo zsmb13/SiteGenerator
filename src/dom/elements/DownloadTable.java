@@ -26,6 +26,10 @@ public class DownloadTable implements Element {
             items.add(new DownloadItem());
             firstLine = MarkdownReader.readLine();
         }
+
+        //An extra line was consumed, give it back to the reader
+        MarkdownReader.cache(firstLine);
+
         return new DownloadTable(items);
     }
 
