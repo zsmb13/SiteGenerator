@@ -27,6 +27,7 @@ public abstract class Page {
     protected String url;
     protected boolean hasBanner = false;
     protected boolean containsCode = false;
+    public static boolean grabDescription = false;
 
     public Page(File sourceFile) {
         sections = MarkdownReader.readSections(sourceFile);

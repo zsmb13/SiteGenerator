@@ -22,6 +22,10 @@ public class MarkdownReader {
      * @return the line
      */
     public static String readLine() {
+        if(!cachedLines.isEmpty()) {
+            return cachedLines.remove(0);
+        }
+
         try {
             return br.readLine();
         } catch (IOException e) {
@@ -29,6 +33,12 @@ public class MarkdownReader {
             e.printStackTrace();
             return null;
         }
+    }
+
+    private static ArrayList<String> cachedLines = new ArrayList<>();
+
+    public static void cache(String toCache) {
+        cachedLines.add(toCache);
     }
 
     /**
