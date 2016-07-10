@@ -38,10 +38,6 @@ public abstract class Page {
     private boolean containsCode = false;
     private boolean post = false;
 
-    // Public static properties
-    public static boolean grabDescription = false;
-    public static Page current = null;
-
     // Setters
     public void setShortTitle(String shortTitle) {
         this.shortTitle = shortTitle;
@@ -57,8 +53,9 @@ public abstract class Page {
     }
 
     public void setDescription(String description) {
-        grabDescription = false;
-        this.description = description;
+        if(this.description == null) {
+            this.description = description;
+        }
     }
 
     public void setContainsCode(boolean containsCode) {
@@ -67,6 +64,10 @@ public abstract class Page {
 
     public void setPost(boolean post) {
         this.post = post;
+
+        if(post) {
+            PageDirectory.post(this);
+        }
     }
 
     public void setLanguage(String language) {
@@ -82,14 +83,18 @@ public abstract class Page {
 
 
     public Page(File sourceFile) {
-        current = this;
+        PageDirectory.setCurrentPage(this);
 
-        MarkdownReader.readPageProps(sourceFile);
-        sections = MarkdownReader.readSections();
+        if(sourceFile != null) {
+            MarkdownReader.readPageProps(sourceFile);
+            sections = MarkdownReader.readSections();
+        }
 
         sitePath = createSitePath();
         url = createURL();
         fileName = createFilename();
+
+        PageDirectory.setCurrentPage(null);
     }
 
     public String getFileName() {

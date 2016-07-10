@@ -1,6 +1,7 @@
 package dom.elements;
 
 import dom.roots.Page;
+import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.MarkdownReader;
 
@@ -17,7 +18,7 @@ public class DownloadItem implements Element {
     private Page page;
 
     public DownloadItem() {
-        page = Page.current;
+        page = PageDirectory.getCurrentPage();
 
         filename = MarkdownReader.readLine();
         description = MarkdownReader.readLine();

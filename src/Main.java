@@ -1,6 +1,7 @@
 import dom.roots.Article;
 import dom.roots.Page;
 import dom.roots.Project;
+import dom.roots.custom.LostPage;
 import io.TextHelper;
 import resources.ResourceFetcher;
 import resources.StringLists;
@@ -62,7 +63,10 @@ public class Main {
         /*Project p = new Project(new File(ResourceFetcher.getString(Strings.SourceDir) + "tetris.txt"));
         p.write();*/
 
-        Article a = new Article(new File(ResourceFetcher.getString(Strings.SourceDir) + "codelite_sdl2_setup.txt"));
-        a.write();
+        /*Article a = new Article(new File(ResourceFetcher.getString(Strings.SourceDir) + "codelite_sdl2_setup.txt"));
+        a.write();*/
+
+        Page p = new LostPage();
+        p.write();
     }
 }

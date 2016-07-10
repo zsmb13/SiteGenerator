@@ -1,6 +1,7 @@
 package dom.elements;
 
 import dom.roots.Page;
+import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.MarkdownReader;
 import resources.ResourceFetcher;
@@ -44,7 +45,7 @@ public class Code implements Element {
             lines.add(line);
         }
 
-        Page.current.setContainsCode(true);
+        PageDirectory.getCurrentPage().setContainsCode(true);
         return new Code(lines, language);
     }
 

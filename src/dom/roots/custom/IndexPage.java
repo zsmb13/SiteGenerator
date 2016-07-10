@@ -12,9 +12,19 @@ public class IndexPage extends CustomPage {
     //TODO post titles will not automatically have "New project" prepended to them
     //that is to be done here
 
-    public IndexPage(File sourceFile) {
-        super(sourceFile);
+    @Override
+    protected String createURL() {
+        return null;
     }
 
+    @Override
+    protected String createSitePath() {
+        return null;
+    }
+
+    @Override
+    protected String createFilename() {
+        return null;
+    }
 
 }

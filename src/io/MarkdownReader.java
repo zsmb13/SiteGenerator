@@ -3,6 +3,7 @@ package io;
 import dom.elements.*;
 import dom.roots.Category;
 import dom.roots.Page;
+import dom.roots.PageDirectory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -60,20 +61,22 @@ public class MarkdownReader {
         }
 
         String line;
+        Page currentPage = PageDirectory.getCurrentPage();
         while((line = readLine()) != null && !line.trim().isEmpty()) {
             String[] pieces = line.split("=");
             String propName = pieces[0].trim();
             String propValue = pieces[1].replace("\"", "");
 
+
             switch(propName) {
                 case "date":
-                    Page.current.setDate(propValue);
+                    currentPage.setDate(propValue);
                     break;
                 case "title":
-                    Page.current.setTitle(propValue);
+                    currentPage.setTitle(propValue);
                     break;
                 case "shorttitle":
-                    Page.current.setShortTitle(propValue);
+                    currentPage.setShortTitle(propValue);
                     break;
                 case "category":
                     String[] cats = propValue.split(" ");
@@ -81,15 +84,15 @@ public class MarkdownReader {
                     for(int i = 0; i < cats.length; i++) {
                         categories.add(Category.parse(cats[i]));
                     }
-                    Page.current.setCategories(categories);
+                    currentPage.setCategories(categories);
                     break;
                 case "post":
                     if(propValue.equals("true")) {
-                        Page.current.setPost(true);
+                        currentPage.setPost(true);
                     }
                     break;
                 case "lang":
-                    Page.current.setLanguage(propValue);
+                    currentPage.setLanguage(propValue);
                     break;
                 default:
                     System.err.println("Unknown property name read from file: " + propName);

@@ -1,6 +1,7 @@
 package dom.elements;
 
 import dom.roots.Page;
+import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.TextHelper;
 
@@ -18,8 +19,8 @@ public class Paragraph implements Element {
     public static Paragraph create(String firstLine) {
         String text = TextHelper.process(firstLine.trim());
 
-        if(Page.grabDescription) {
-            Page.current.setDescription(TextHelper.stripHTML(text));
+        if(PageDirectory.wantsDesc()) {
+            PageDirectory.setCurrentDesc(TextHelper.stripHTML(text));
         }
 
         return new Paragraph(text);
