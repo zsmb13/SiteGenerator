@@ -30,7 +30,7 @@ public class List implements Element {
     private static List createUnordered(String firstLine) {
         ArrayList<String> entries = new ArrayList<>();
 
-        while(firstLine.charAt(0) == '-') {
+        while (firstLine.charAt(0) == '-') {
             String entry = firstLine.substring(1).trim();
             entries.add(entry);
             firstLine = MarkdownReader.readLine();
@@ -44,9 +44,9 @@ public class List implements Element {
     private static List createOrdered(String firstLine) {
         ArrayList<String> entries = new ArrayList<>();
 
-        while(isOrderedItem(firstLine)) {
+        while (isOrderedItem(firstLine)) {
             int i = firstLine.indexOf('.');
-            String entry = firstLine.substring(i+1).trim();
+            String entry = firstLine.substring(i + 1).trim();
             entries.add(entry);
             firstLine = MarkdownReader.readLine();
         }
@@ -77,9 +77,9 @@ public class List implements Element {
     @Override
     public void writeHTML() {
         HTMLWriter.writeLine(ordered ? "<ol>" : "<ul>");
-
+        HTMLWriter.indent();
         HTMLWriter.writeLines(entries);
-
+        HTMLWriter.unindent();
         HTMLWriter.writeLine(ordered ? "</ol>" : "</ul>");
     }
 }

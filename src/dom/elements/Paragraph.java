@@ -16,7 +16,7 @@ public class Paragraph implements Element {
     }
 
     public static Paragraph create(String firstLine) {
-        String text = TextHelper.process(firstLine);
+        String text = TextHelper.process(firstLine.trim());
 
         if(Page.grabDescription) {
             Page.current.setDescription(TextHelper.stripHTML(text));

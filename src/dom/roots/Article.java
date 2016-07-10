@@ -24,4 +24,9 @@ public class Article extends Page {
     protected String createSitePath() {
         return "/articles/";
     }
+
+    @Override
+    protected String createFilename() {
+        return TextHelper.hyphenate(shortTitle) + ".html";
+    }
 }

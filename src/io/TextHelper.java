@@ -82,9 +82,9 @@ public class TextHelper {
             restOfText = text.substring(firstSpace);
         }
 
-        return "<a href=\"" + link + "\" " +
-                "title=\"" + hover + "\" " +
-                (isExternal ? "target=\"blank\" " : "") +
+        return "<a href=\"" + link + "\"" +
+                " title=\"" + hover + "\"" +
+                (isExternal ? " target=\"_blank\"" : "") +
                 "><span class=\"nowrap\">" +
                 "<i class=\"fa " + icon + "\"></i>&nbsp;" +
                 firstWord + "</span>" + restOfText + "</a>";

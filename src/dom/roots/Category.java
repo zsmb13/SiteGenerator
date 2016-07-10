@@ -24,4 +24,24 @@ public enum Category {
                 return "Unknown category";
         }
     }
+
+    public static Category parse(String catDesc) {
+        switch(catDesc.toLowerCase()) {
+            case "article":
+                return Article;
+            case "tutorial":
+                return Tutorial;
+            case "project":
+            case "newproject":
+                return NewProject;
+            case "test":
+                return TestCategory;
+            case "site":
+            case "sitenews":
+                return SiteNews;
+            default:
+                System.err.println("Can't parse category description");
+                return null;
+        }
+    }
 }

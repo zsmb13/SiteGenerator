@@ -23,4 +23,10 @@ public class CustomPage extends Page {
         //TODO
         return null;
     }
+
+    @Override
+    protected String createFilename() {
+        //TODO
+        return null;
+    }
 }

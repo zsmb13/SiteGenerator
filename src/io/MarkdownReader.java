@@ -1,12 +1,15 @@
 package io;
 
 import dom.elements.*;
+import dom.roots.Category;
+import dom.roots.Page;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -37,28 +40,75 @@ public class MarkdownReader {
 
     private static ArrayList<String> cachedLines = new ArrayList<>();
 
-    public static void cache(String toCache) {
-        cachedLines.add(toCache);
-    }
-
-    public static void readPageProps(File sourceFile) {
-
+    public static void cache(String str) {
+        if(str != null) {
+            cachedLines.add(str);
+        }
     }
 
     /**
-     * Processes a given file
+     * Opens a new file, and applies the properties found in it to the current Page
      *
-     * @param sourceFile the given file
-     * @return the contents read
+     * @param sourceFile the file to open and read
      */
-    public static java.util.List<Section> readSections(File sourceFile) {
-        sections = new ArrayList<>();
-
+    public static void readPageProps(File sourceFile) {
         try {
             br = new BufferedReader(new FileReader(sourceFile));
-        } catch (IOException e) {
+        } catch(IOException e) {
             //TODO error handling
             e.printStackTrace();
+        }
+
+        String line;
+        while((line = readLine()) != null && !line.trim().isEmpty()) {
+            String[] pieces = line.split("=");
+            String propName = pieces[0].trim();
+            String propValue = pieces[1].replace("\"", "");
+
+            switch(propName) {
+                case "date":
+                    Page.current.setDate(propValue);
+                    break;
+                case "title":
+                    Page.current.setTitle(propValue);
+                    break;
+                case "shorttitle":
+                    Page.current.setShortTitle(propValue);
+                    break;
+                case "category":
+                    String[] cats = propValue.split(" ");
+                    ArrayList<Category> categories = new ArrayList<>();
+                    for(int i = 0; i < cats.length; i++) {
+                        categories.add(Category.parse(cats[i]));
+                    }
+                    Page.current.setCategories(categories);
+                    break;
+                case "post":
+                    if(propValue.equals("true")) {
+                        Page.current.setPost(true);
+                    }
+                    break;
+                case "lang":
+                    Page.current.setLanguage(propValue);
+                    break;
+                default:
+                    System.err.println("Unknown property name read from file: " + propName);
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Reads the sections found in the currently open file
+     *
+     * @return the contents read
+     */
+    public static java.util.List<Section> readSections() {
+        sections = new ArrayList<>();
+
+        if(br == null) {
+            //TODO error handling
+            // properties haven't been read!
         }
 
         String line;
@@ -83,6 +133,7 @@ public class MarkdownReader {
 
         try {
             br.close();
+            br = null;
         } catch (IOException e) {
             e.printStackTrace();
             //TODO error handling

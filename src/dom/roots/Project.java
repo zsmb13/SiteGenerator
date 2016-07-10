@@ -1,5 +1,7 @@
 package dom.roots;
 
+import io.TextHelper;
+
 import java.io.File;
 
 /**
@@ -9,18 +11,23 @@ public class Project extends Page {
 
     public Project(File sourceFile) {
         super(sourceFile);
+
+        hasBanner = true;
         // TODO implement
     }
 
     @Override
     protected String createURL() {
-        // TODO implement
-        return null;
+        return "/projects/" + TextHelper.simplify(shortTitle) + "/";
     }
 
     @Override
     protected String createSitePath() {
-        // TODO implement
-        return null;
+        return "projects/" + TextHelper.simplify(shortTitle) + "/";
+    }
+
+    @Override
+    protected String createFilename() {
+        return TextHelper.simplify(shortTitle) + ".html";
     }
 }

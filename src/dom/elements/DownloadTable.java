@@ -22,7 +22,7 @@ public class DownloadTable implements Element {
 
     public static DownloadTable create(String firstLine) {
         ArrayList<DownloadItem> items = new ArrayList<>();
-        while(firstLine.equals("%")) {
+        while(firstLine != null && firstLine.equals("%")) {
             items.add(new DownloadItem());
             firstLine = MarkdownReader.readLine();
         }

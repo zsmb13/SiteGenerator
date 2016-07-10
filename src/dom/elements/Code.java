@@ -20,8 +20,6 @@ public class Code implements Element {
     private String language;
 
     public Code(List<String> lines, String language) {
-        lines.add(0, "<pre><code class=\"" + language + "\">");
-        lines.add("</code></pre>");
         this.lines = lines;
         this.language = language;
     }

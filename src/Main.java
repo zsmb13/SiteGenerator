@@ -51,11 +51,15 @@ public class Main {
         pages.addAll(abandonedProjects);
         pages.addAll(completedProjects);
 
+        //TODO create directories if they don't exist
+
         for (Page p : pages) {
             p.write();
         }
     }*/
 
     public static void main(String[] args) {
+        Project p = new Project(new File(ResourceFetcher.getString(Strings.SourceDir) + "tetris.txt"));
+        p.write();
     }
 }

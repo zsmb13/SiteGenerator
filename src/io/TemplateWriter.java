@@ -8,7 +8,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -16,6 +18,7 @@ import java.util.List;
 public class TemplateWriter {
 
     private static List<Template> templates = null;
+    private static Map<Template, Integer> indentations = null;
 
     public static void write(int templateID) {
         if (templates == null) {
@@ -25,16 +28,24 @@ public class TemplateWriter {
             // TODO handle error
         }
 
-        templates.get(templateID).writeHTML();
+        Template t = templates.get(templateID);
+        t.writeHTML();
+        HTMLWriter.setIndentation(indentations.get(t));
     }
 
     private static void createDir(String name) {
         File f = new File("name");
         if (!f.exists()) {
-            if (!f.mkdir()) {
+            boolean success = f.mkdir();
+            if (!success) {
                 //TODO handle error
             }
         }
+    }
+
+    private static void addTemplate(Template t) {
+        templates.add(t);
+        indentations.put(t, t.getIndentation());
     }
 
     private static void prepareTemplates() {
@@ -42,6 +53,7 @@ public class TemplateWriter {
         createDir("temp/templates");
 
         templates = new ArrayList<>();
+        indentations = new HashMap<>();
 
         String filename = ResourceFetcher.getString(Strings.SourceDir) + "template.html";
 
@@ -51,7 +63,7 @@ public class TemplateWriter {
             while ((line = br.readLine()) != null) {
                 if (line.trim().equals("***")) {
                     // end of a template
-                    templates.add(new Template(currentLines));
+                    addTemplate(new Template(currentLines));
                     currentLines.clear();
                 }
                 else {
@@ -59,7 +71,8 @@ public class TemplateWriter {
                 }
             }
             // end of the last template
-            templates.add(new Template(currentLines));
+            addTemplate(new Template(currentLines));
+
         } catch (IOException e) {
             // TODO handle error
             e.printStackTrace();
@@ -77,6 +90,15 @@ public class TemplateWriter {
             for (String l : lines) {
                 HTMLWriter.writeLine(l, false);
             }
+        }
+
+        private int getIndentation() {
+            int i = 0;
+            String line = lines.get(lines.size() - 1);
+            while(line.charAt(i) == '\t') {
+                i++;
+            }
+            return i;
         }
     }
 

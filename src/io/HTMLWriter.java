@@ -25,9 +25,10 @@ public class HTMLWriter {
     }
 
     public static void prepareToWrite(Page p) {
-        String filename = p.getFileName();
+        String filename = p.getSitePath() + p.getFileName();
 
         try {
+            System.out.println(filename);
             pw = new PrintWriter(new File(filename));
         } catch (FileNotFoundException e) {
             System.err.println("HTMLWriter error: can not open file for writing.");
@@ -73,6 +74,10 @@ public class HTMLWriter {
         for (String line : lines) {
             writeLine(line, indent);
         }
+    }
+
+    public static void finishWriting() {
+        pw.close();
     }
 
 }

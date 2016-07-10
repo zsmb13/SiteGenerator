@@ -23,15 +23,15 @@ public abstract class Page {
     // Private properties
     protected String fileName;
     protected boolean hasBanner = false;
-    private String sitePath;
-    private String url;
+    protected String sitePath;
+    protected String url;
 
     // Settable properties
-    private String description = null;
-    private String date = null;
-    private String title = null;
-    private String shortTitle = null;
-    private String language = null;
+    protected String description = null;
+    protected String date = null;
+    protected String title = null;
+    protected String shortTitle = null;
+    protected String language = null;
 
     private List<Category> categories = null;
 
@@ -84,10 +84,12 @@ public abstract class Page {
     public Page(File sourceFile) {
         current = this;
 
-        sections = MarkdownReader.readSections(sourceFile);
+        MarkdownReader.readPageProps(sourceFile);
+        sections = MarkdownReader.readSections();
 
         sitePath = createSitePath();
         url = createURL();
+        fileName = createFilename();
     }
 
     public String getFileName() {
@@ -96,9 +98,15 @@ public abstract class Page {
         return fileName;
     }
 
+    public String getSitePath() {
+        return sitePath;
+    }
+
     protected abstract String createURL();
 
     protected abstract String createSitePath();
+
+    protected abstract String createFilename();
 
     public void write() {
         HTMLWriter.prepareToWrite(this);
@@ -131,18 +139,21 @@ public abstract class Page {
         TemplateWriter.write(3);
         TemplateWriter.write(4);
         TemplateWriter.write(5);
+
+        HTMLWriter.finishWriting();
     }
 
     private void writeBanner() {
-        HTMLWriter.writeLine("<section id =\"content_header\">");
+        HTMLWriter.writeLine("<section id=\"content_header\">");
         HTMLWriter.writeLine("<h2 id=\"title\">" + title + "</h2>");
 
-        HTMLWriter.writeLine("<h5 id=\"date\"><i class=\"fa fa-calendar-o\"></i>@nbsp;");
+        HTMLWriter.writeLine("<h5 id=\"date\"><i class=\"fa fa-calendar-o\"></i>&nbsp;");
         HTMLWriter.writeLine(date);
         HTMLWriter.writeLine("</h5>");
 
         HTMLWriter.writeLine("<img id=\"banner\" src=\"/images/"
-                + TextHelper.simplify(shortTitle) + "_ban.png\"" + title + "\">");
+                + TextHelper.simplify(shortTitle) + "_ban.png\""
+                + " alt=\"" + title + "\">");
         HTMLWriter.writeLine("</section>");
     }
 
