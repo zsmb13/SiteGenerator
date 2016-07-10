@@ -2,6 +2,7 @@ package dom.elements;
 
 import io.HTMLWriter;
 import io.MarkdownReader;
+import io.TextHelper;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class List implements Element {
 
     public List(java.util.List<String> entries, boolean ordered) {
         for (String e : entries) {
-            this.entries.add("<li>" + e + "</li>");
+            this.entries.add("<li>" + TextHelper.process(e) + "</li>");
         }
 
         this.ordered = ordered;
