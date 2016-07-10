@@ -49,7 +49,7 @@ public class TemplateWriter {
             List<String> currentLines = new ArrayList<>();
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.equals("***")) {
+                if (line.trim().equals("***")) {
                     // end of a template
                     templates.add(new Template(currentLines));
                     currentLines.clear();

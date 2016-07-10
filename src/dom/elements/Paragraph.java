@@ -1,5 +1,6 @@
 package dom.elements;
 
+import dom.roots.Page;
 import io.HTMLWriter;
 import io.TextHelper;
 
@@ -14,9 +15,14 @@ public class Paragraph implements Element {
         this.text = TextHelper.process(text);
     }
 
-    public static Image create(String firstLine) {
-        //TODO implement
-        return null;
+    public static Paragraph create(String firstLine) {
+        String text = TextHelper.process(firstLine);
+
+        if(Page.grabDescription) {
+            //TODO set current page's description to 'text'
+        }
+
+        return new Paragraph(text);
     }
 
     @Override
