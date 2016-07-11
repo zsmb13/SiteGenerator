@@ -22,7 +22,7 @@ public class LostPage extends CustomPage {
 
         sections = new ArrayList<>();
 
-        Section s = new Section(0);
+        Section s = new Section();
         Header header = new Header(ResourceFetcher.getString(Strings.LostHeader), 2);
         Paragraph paragraph = new Paragraph(ResourceFetcher.getString(Strings.LostText));
         s.add(header);

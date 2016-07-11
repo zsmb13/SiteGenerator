@@ -20,7 +20,7 @@ public class Paragraph implements Element {
         String text = TextHelper.process(firstLine.trim());
 
         if(PageDirectory.wantsDesc()) {
-            PageDirectory.setCurrentDesc(TextHelper.stripHTML(text));
+            PageDirectory.setCurrentDesc(text);
         }
 
         return new Paragraph(text);

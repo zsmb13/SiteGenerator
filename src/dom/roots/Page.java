@@ -97,6 +97,8 @@ public abstract class Page {
         PageDirectory.setCurrentPage(null);
     }
 
+    // Getters
+
     public String getFileName() {
         // TODO implements things here
         // TODO This is a placeholder function
@@ -111,6 +113,26 @@ public abstract class Page {
         return url;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getShortTitle() {
+        return shortTitle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     protected abstract String createURL();
 
     protected abstract String createSitePath();
@@ -123,7 +145,7 @@ public abstract class Page {
         TemplateWriter.write(0);
 
         // TODO make nicer
-        HTMLWriter.writeLine("<meta name=\"description\" content=\"" + description + "\">");
+        HTMLWriter.writeLine("<meta name=\"description\" content=\"" + TextHelper.stripHTML(description) + "\">");
 
         TemplateWriter.write(1);
 

@@ -1,6 +1,7 @@
 package dom.roots;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -41,6 +42,17 @@ public class PageDirectory {
 
     static void post(Page page) {
         postedPages.add(page);
+    }
+
+    public static List<Page> getPostedPages() {
+        postedPages.sort(new Comparator<Page>() {
+            @Override
+            public int compare(Page o1, Page o2) {
+                //TODO check if this is right or should be the other way around
+                return o2.getDate().compareTo(o1.getDate());
+            }
+        });
+        return postedPages;
     }
 
 }

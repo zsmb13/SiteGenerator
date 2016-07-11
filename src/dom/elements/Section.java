@@ -10,16 +10,28 @@ import java.util.List;
  */
 public class Section implements Element {
     private List<Element> subElements = new ArrayList<Element>();
-    private int sectionID;
+    private String className;
+    private String ID;
 
-    public Section(int ID) {
-        sectionID = ID;
+    public Section() {
+    }
+
+    public Section(String className) {
+        this.className = className;
+    }
+
+    public Section(String className, String ID) {
+        this.className = className;
+        this.ID = ID;
     }
 
     @Override
     public void writeHTML() {
         // TODO determine if we really need these IDs for anything
-        HTMLWriter.writeLine("<section id=\"section_" + sectionID + "\">");
+        HTMLWriter.writeLine("<section"
+                + (className != null ? " class=\"" + className + "\"" : "")
+                + (ID != null ? " id=\"" + ID+ "\"" : "")
+                + ">");
         HTMLWriter.indent();
         subElements.forEach(Element::writeHTML);
         HTMLWriter.unindent();

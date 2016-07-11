@@ -129,7 +129,7 @@ public class MarkdownReader {
 
             if (sections.isEmpty()) {
                 // This should not happen, as every page is supposed to start with a header
-                sections.add(new Section(sections.size()));
+                sections.add(new Section());
             }
             sections.get(sections.size() - 1).add(e);
         }
@@ -162,7 +162,7 @@ public class MarkdownReader {
             case '#':
             case '@':
                 // header
-                sections.add(new Section(sections.size()));
+                sections.add(new Section());
                 return Header.create(line);
             case '%':
                 // dltable
