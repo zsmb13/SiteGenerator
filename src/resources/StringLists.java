@@ -7,5 +7,7 @@ public enum StringLists {
     DLTableFooter,
     DLTableHeader,
     CodeHighlightScript,
-    Languages
+    Languages,
+    ArchiveHeader,
+    ArchiveKittens
 }

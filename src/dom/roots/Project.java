@@ -13,7 +13,8 @@ public class Project extends Page {
         super(sourceFile);
 
         hasBanner = true;
-        // TODO implement
+
+        PageDirectory.addProject(this);
     }
 
     @Override

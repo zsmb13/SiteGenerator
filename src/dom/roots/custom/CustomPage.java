@@ -13,4 +13,8 @@ public abstract class CustomPage extends Page {
         super(null);
     }
 
+    public CustomPage(File sourceFile) {
+        super(sourceFile);
+    }
+
 }

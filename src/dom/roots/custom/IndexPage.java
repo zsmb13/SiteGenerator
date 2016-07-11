@@ -20,27 +20,34 @@ import java.util.List;
 public class IndexPage extends CustomPage {
 
     private static final int postsPerPage = 10;
+    private int index;
 
-    //TODO post titles will not automatically have "New project" prepended to them
-    //that is to be done here
-
-    public IndexPage(List<Section> sections) {
+    public IndexPage(List<Section> sections, int index) {
         this.sections = sections;
+        this.index = index;
     }
 
     @Override
     protected String createURL() {
-        return null;
+        if(index == 0) {
+            return "/";
+        }
+        //TODO ensure this function is actually called
+        return "/page/" + (index+1) + "/";
     }
 
     @Override
     protected String createSitePath() {
-        return null;
+        return "";
     }
 
     @Override
     protected String createFilename() {
-        return null;
+        if(index == 0) {
+            return "index.html";
+        }
+
+        return "index" + (index+1) + ".html";
     }
 
     public static List<IndexPage> create() {
@@ -83,6 +90,7 @@ public class IndexPage extends CustomPage {
         return "/page/" + (index+2) + "/";
     }
 
+    //TODO do something with this mess
     private static IndexPage createPage(List<Page> pages, int index, int lastIndex) {
         List<Section> sections = new ArrayList<>();
         for(Page p : pages) {
@@ -116,14 +124,14 @@ public class IndexPage extends CustomPage {
             sections.add(navSection);
         }
 
-        return new IndexPage(sections);
+        return new IndexPage(sections, index);
     }
 
+    //TODO do something with this mess
     private static Section createSection(Page p) {
         Section s = new Section("index");
 
-        String postName = p.getCategories().contains(Category.NewProject) ?
-                "New project: " + p.getTitle() : p.getTitle();
+        String postName = p.getPostTitle();
 
         String[] lines = {
                 "<h2><a href=\"" + p.getUrl() + "\">",

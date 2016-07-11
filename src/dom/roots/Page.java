@@ -188,4 +188,25 @@ public abstract class Page {
         HTMLWriter.writeLine("</section>");
     }
 
+    public String getCategoriesString() {
+        if(categories.isEmpty()) {
+            return "";
+        }
+
+        String temp = categories.get(0).toString();
+
+        for(int i = 1; i < categories.size(); i++) {
+            temp += " / " + categories.get(i).toString();
+        }
+
+        return temp;
+    }
+
+    public String getPostTitle() {
+        return categories.contains(Category.NewProject) ? "New project: " + title : title;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
 }

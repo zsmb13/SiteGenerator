@@ -55,4 +55,15 @@ public class PageDirectory {
         return postedPages;
     }
 
+    // Project keeping
+    private static List<Project> projects = new ArrayList<>();
+
+    static void addProject(Project p) {
+        projects.add(p);
+    }
+
+    public static List<Project> getProjects() {
+        return projects;
+    }
+
 }
