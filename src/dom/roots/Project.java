@@ -3,6 +3,7 @@ package dom.roots;
 import io.TextHelper;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -13,6 +14,11 @@ public class Project extends Page {
         super(sourceFile);
 
         hasBanner = true;
+
+        if(categories == null) {
+            categories = new ArrayList<>();
+        }
+        categories.add(Category.NewProject);
 
         PageDirectory.addProject(this);
     }

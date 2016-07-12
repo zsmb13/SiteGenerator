@@ -21,6 +21,9 @@ public class IndexPage extends CustomPage {
     public IndexPage(List<Section> sections, int index) {
         this.sections = sections;
         this.index = index;
+
+        //TODO extract to resource
+        description = "The index page of the website";
     }
 
     public static List<IndexPage> create() {

@@ -12,6 +12,9 @@ public class AboutPage extends CustomPage {
 
     public AboutPage() {
         super(new File(ResourceFetcher.getString(Strings.SourceDir) + "about.txt"));
+
+        //TODO extract to resource
+        description = "The about page of the website.";
     }
 
     @Override

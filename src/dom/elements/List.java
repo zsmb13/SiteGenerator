@@ -1,5 +1,6 @@
 package dom.elements;
 
+import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.MarkdownReader;
 import io.TextHelper;
@@ -30,10 +31,14 @@ public class List implements Element {
     private static List createUnordered(String firstLine) {
         ArrayList<String> entries = new ArrayList<>();
 
-        while (firstLine.charAt(0) == '-') {
+        while (firstLine.length() > 0 && firstLine.charAt(0) == '-') {
             String entry = firstLine.substring(1).trim();
             entries.add(entry);
             firstLine = MarkdownReader.readLine();
+
+            if(firstLine == null) {
+                break;
+            }
         }
 
         MarkdownReader.cache(firstLine);

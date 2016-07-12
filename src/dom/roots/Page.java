@@ -33,7 +33,7 @@ public abstract class Page {
     protected String shortTitle = null;
     protected String language = null;
 
-    private List<Category> categories = null;
+    protected List<Category> categories = null;
 
     private boolean containsCode = false;
     private boolean post = false;

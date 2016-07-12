@@ -14,6 +14,9 @@ import java.util.List;
 public class ProjectsPage extends CustomPage {
     private ProjectsPage(List<Section> sections) {
         this.sections = sections;
+
+        //TODO extract to resource
+        description = "the projects page";
     }
 
     public static ProjectsPage create(List<ProjectCategory> categories) {

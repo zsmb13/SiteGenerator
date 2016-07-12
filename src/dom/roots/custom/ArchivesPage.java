@@ -3,6 +3,7 @@ package dom.roots.custom;
 import dom.elements.CustomHTML;
 import dom.elements.Element;
 import dom.elements.Section;
+import dom.roots.Page;
 import dom.roots.PageDirectory;
 import dom.roots.Project;
 import resources.ResourceFetcher;
@@ -18,6 +19,9 @@ import java.util.List;
 public class ArchivesPage extends CustomPage {
     private ArchivesPage(List<Section> sections) {
         this.sections = sections;
+
+        //TODO extract to resource
+        description = "The archives page of the website.";
     }
 
     public static ArchivesPage create() {
@@ -27,8 +31,8 @@ public class ArchivesPage extends CustomPage {
         // Archives table
         archiveSection.add(new CustomHTML(ResourceFetcher.getStringList(StringLists.ArchiveHeader)));
 
-        List<Project> projects = PageDirectory.getProjects();
-        for (Project p : projects) {
+        List<Page> posts = PageDirectory.getPostedPages();
+        for (Page p : posts) {
             archiveSection.add(createRow(p));
         }
 
@@ -45,7 +49,7 @@ public class ArchivesPage extends CustomPage {
         return new ArchivesPage(sections);
     }
 
-    private static Element createRow(Project p) {
+    private static Element createRow(Page p) {
         String[] lines = {
                 "<tr>",
                 "<td class=\"articletable\"><a href=\"" + p.getUrl() + "\">" + p.getPostTitle() + "</a></td>",

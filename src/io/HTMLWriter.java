@@ -29,7 +29,10 @@ public class HTMLWriter {
         //String filename = p.getSitePath() + p.getFileName();
         String filename = "output/" + p.getSitePath() + p.getFileName();
 
-        // TODO directory creation if necessary
+        File outputFile = new File("output/" + p.getSitePath());
+        if(!outputFile.exists()) {
+            outputFile.mkdirs();
+        }
 
         try {
             System.out.println(filename);

@@ -68,6 +68,7 @@ public class Main {
         LostPage lostPage = new LostPage();
         pages.add(lostPage);
 
+        //TODO extract to resource
         ProjectsPage.ProjectCategory completed = new ProjectsPage.ProjectCategory(
                 "Completed projects", "This is the description of the completed projects", completedProjects
         );
