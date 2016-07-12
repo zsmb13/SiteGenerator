@@ -12,35 +12,14 @@ import java.util.List;
  * Created by zsmb on 2016-07-11.
  */
 public class ProjectsPage extends CustomPage {
-    @Override
-    protected String createURL() {
-        return "/projects/";
-    }
-
-    @Override
-    protected String createSitePath() {
-        return "";
-    }
-
-    @Override
-    protected String createFilename() {
-        return "projects.html";
-    }
-
     private ProjectsPage(List<Section> sections) {
         this.sections = sections;
-    }
-
-    public class ProjectCategory {
-        public String name;
-        public String description;
-        public List<Project> projects;
     }
 
     public static ProjectsPage create(List<ProjectCategory> categories) {
         List<Section> sections = new ArrayList<>();
 
-        for(ProjectCategory pc : categories) {
+        for (ProjectCategory pc : categories) {
             sections.add(createSection(pc));
         }
 
@@ -54,7 +33,7 @@ public class ProjectsPage extends CustomPage {
         s.add(new Paragraph(pc.description));
         s.add(new CustomHTML("<div class=\"boxcontainer\">"));
 
-        for(Project p : pc.projects) {
+        for (Project p : pc.projects) {
             s.add(createBox(p));
         }
 
@@ -76,6 +55,33 @@ public class ProjectsPage extends CustomPage {
         };
 
         return new CustomHTML(Arrays.asList(lines));
+    }
+
+    @Override
+    protected String createURL() {
+        return "/projects/";
+    }
+
+    @Override
+    protected String createSitePath() {
+        return "";
+    }
+
+    @Override
+    protected String createFilename() {
+        return "projects.html";
+    }
+
+    public static class ProjectCategory {
+        public String name;
+        public String description;
+        public List<Project> projects;
+
+        public ProjectCategory(String name, String description, List<Project> projects) {
+            this.name = name;
+            this.description = description;
+            this.projects = projects;
+        }
     }
 
 

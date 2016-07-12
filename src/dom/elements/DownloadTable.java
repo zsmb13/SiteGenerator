@@ -5,7 +5,6 @@ import io.MarkdownReader;
 import resources.ResourceFetcher;
 import resources.StringLists;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class DownloadTable implements Element {
 
     public static DownloadTable create(String firstLine) {
         ArrayList<DownloadItem> items = new ArrayList<>();
-        while(firstLine != null && firstLine.equals("%")) {
+        while (firstLine != null && firstLine.equals("%")) {
             items.add(new DownloadItem());
             firstLine = MarkdownReader.readLine();
         }

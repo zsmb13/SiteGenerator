@@ -16,21 +16,6 @@ import java.util.List;
  * Created by zsmb on 2016-07-11.
  */
 public class ArchivesPage extends CustomPage {
-    @Override
-    protected String createURL() {
-        return "/archives/";
-    }
-
-    @Override
-    protected String createSitePath() {
-        return "";
-    }
-
-    @Override
-    protected String createFilename() {
-        return "archives.html";
-    }
-
     private ArchivesPage(List<Section> sections) {
         this.sections = sections;
     }
@@ -43,7 +28,7 @@ public class ArchivesPage extends CustomPage {
         archiveSection.add(new CustomHTML(ResourceFetcher.getStringList(StringLists.ArchiveHeader)));
 
         List<Project> projects = PageDirectory.getProjects();
-        for(Project p : projects) {
+        for (Project p : projects) {
             archiveSection.add(createRow(p));
         }
 
@@ -70,5 +55,20 @@ public class ArchivesPage extends CustomPage {
         };
 
         return new CustomHTML(Arrays.asList(lines));
+    }
+
+    @Override
+    protected String createURL() {
+        return "/archives/";
+    }
+
+    @Override
+    protected String createSitePath() {
+        return "";
+    }
+
+    @Override
+    protected String createFilename() {
+        return "archives.html";
     }
 }

@@ -11,6 +11,12 @@ public class PageDirectory {
 
     // Access to current page
     private static Page current = null;
+    // Description management
+    private static boolean awaitingDesc = false;
+    // Post keeping
+    private static List<Page> postedPages = new ArrayList<>();
+    // Project keeping
+    private static List<Project> projects = new ArrayList<>();
 
     public static Page getCurrentPage() {
         return current;
@@ -20,9 +26,6 @@ public class PageDirectory {
         current = page;
         awaitingDesc = false;
     }
-
-    // Description management
-    private static boolean awaitingDesc = false;
 
     public static void prepareForDesc() {
         awaitingDesc = true;
@@ -36,9 +39,6 @@ public class PageDirectory {
         current.setDescription(description);
         awaitingDesc = false;
     }
-
-    // Post keeping
-    private static List<Page> postedPages = new ArrayList<>();
 
     static void post(Page page) {
         postedPages.add(page);
@@ -54,9 +54,6 @@ public class PageDirectory {
         });
         return postedPages;
     }
-
-    // Project keeping
-    private static List<Project> projects = new ArrayList<>();
 
     static void addProject(Project p) {
         projects.add(p);

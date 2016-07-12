@@ -2,14 +2,10 @@ package dom.roots.custom;
 
 import dom.elements.CustomHTML;
 import dom.elements.Section;
-import dom.roots.Category;
 import dom.roots.Page;
 import dom.roots.PageDirectory;
-import dom.roots.custom.CustomPage;
 import io.TextHelper;
 
-import javax.xml.soap.Text;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,29 +23,6 @@ public class IndexPage extends CustomPage {
         this.index = index;
     }
 
-    @Override
-    protected String createURL() {
-        if(index == 0) {
-            return "/";
-        }
-        //TODO ensure this function is actually called
-        return "/page/" + (index+1) + "/";
-    }
-
-    @Override
-    protected String createSitePath() {
-        return "";
-    }
-
-    @Override
-    protected String createFilename() {
-        if(index == 0) {
-            return "index.html";
-        }
-
-        return "index" + (index+1) + ".html";
-    }
-
     public static List<IndexPage> create() {
         List<Page> posts = PageDirectory.getPostedPages();
 
@@ -57,13 +30,13 @@ public class IndexPage extends CustomPage {
 
         // Determine the number of required index pages
         int indexCount = postCount / 10;
-        if(indexCount * 10 < postCount) {
+        if (indexCount * 10 < postCount) {
             indexCount++;
         }
 
         List<IndexPage> indexPages = new ArrayList<>();
-        for(int i = 0; i < indexCount; i++) {
-            IndexPage indexPage = createPage(posts.subList(i*10, Math.min((i+1)*10, postCount)), i, indexCount-1);
+        for (int i = 0; i < indexCount; i++) {
+            IndexPage indexPage = createPage(posts.subList(i * 10, Math.min((i + 1) * 10, postCount)), i, indexCount - 1);
             indexPages.add(indexPage);
         }
 
@@ -71,11 +44,11 @@ public class IndexPage extends CustomPage {
     }
 
     private static String prevPageLink(int index) {
-        if(index < 1) {
+        if (index < 1) {
             return null;
         }
 
-        if(index == 1) {
+        if (index == 1) {
             return "/";
         }
 
@@ -83,22 +56,22 @@ public class IndexPage extends CustomPage {
     }
 
     private static String nextPageLink(int index, int lastIndex) {
-        if(index == lastIndex) {
+        if (index == lastIndex) {
             return null;
         }
 
-        return "/page/" + (index+2) + "/";
+        return "/page/" + (index + 2) + "/";
     }
 
     //TODO do something with this mess
     private static IndexPage createPage(List<Page> pages, int index, int lastIndex) {
         List<Section> sections = new ArrayList<>();
-        for(Page p : pages) {
+        for (Page p : pages) {
             sections.add(createSection(p));
         }
 
         // There is more than one page
-        if(lastIndex > 0) {
+        if (lastIndex > 0) {
             List<String> navigation = new ArrayList<>();
             navigation.add("<section class=\"index\" id=\"indexnav\">");
 
@@ -150,6 +123,29 @@ public class IndexPage extends CustomPage {
 
         s.add(new CustomHTML(Arrays.asList(lines)));
         return s;
+    }
+
+    @Override
+    protected String createURL() {
+        if (index == 0) {
+            return "/";
+        }
+        //TODO ensure this function is actually called
+        return "/page/" + (index + 1) + "/";
+    }
+
+    @Override
+    protected String createSitePath() {
+        return "";
+    }
+
+    @Override
+    protected String createFilename() {
+        if (index == 0) {
+            return "index.html";
+        }
+
+        return "index" + (index + 1) + ".html";
     }
 
 }

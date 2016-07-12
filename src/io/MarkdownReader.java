@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by zsmb on 2016-07-07.
@@ -19,6 +18,7 @@ public class MarkdownReader {
 
     private static BufferedReader br;
     private static ArrayList<Section> sections;
+    private static ArrayList<String> cachedLines = new ArrayList<>();
 
     /**
      * Returns the next line of the file currently being parsed
@@ -26,7 +26,7 @@ public class MarkdownReader {
      * @return the line
      */
     public static String readLine() {
-        if(!cachedLines.isEmpty()) {
+        if (!cachedLines.isEmpty()) {
             return cachedLines.remove(0);
         }
 
@@ -39,10 +39,8 @@ public class MarkdownReader {
         }
     }
 
-    private static ArrayList<String> cachedLines = new ArrayList<>();
-
     public static void cache(String str) {
-        if(str != null) {
+        if (str != null) {
             cachedLines.add(str);
         }
     }
@@ -55,20 +53,20 @@ public class MarkdownReader {
     public static void readPageProps(File sourceFile) {
         try {
             br = new BufferedReader(new FileReader(sourceFile));
-        } catch(IOException e) {
+        } catch (IOException e) {
             //TODO error handling
             e.printStackTrace();
         }
 
         String line;
         Page currentPage = PageDirectory.getCurrentPage();
-        while((line = readLine()) != null && !line.trim().isEmpty()) {
+        while ((line = readLine()) != null && !line.trim().isEmpty()) {
             String[] pieces = line.split("=");
             String propName = pieces[0].trim();
             String propValue = pieces[1].replace("\"", "");
 
 
-            switch(propName) {
+            switch (propName) {
                 case "date":
                     currentPage.setDate(propValue);
                     break;
@@ -81,13 +79,13 @@ public class MarkdownReader {
                 case "category":
                     String[] cats = propValue.split(" ");
                     ArrayList<Category> categories = new ArrayList<>();
-                    for(int i = 0; i < cats.length; i++) {
+                    for (int i = 0; i < cats.length; i++) {
                         categories.add(Category.parse(cats[i]));
                     }
                     currentPage.setCategories(categories);
                     break;
                 case "post":
-                    if(propValue.equals("true")) {
+                    if (propValue.equals("true")) {
                         currentPage.setPost(true);
                     }
                     break;
@@ -109,7 +107,7 @@ public class MarkdownReader {
     public static java.util.List<Section> readSections() {
         sections = new ArrayList<>();
 
-        if(br == null) {
+        if (br == null) {
             //TODO error handling
             // properties haven't been read!
         }

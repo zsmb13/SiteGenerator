@@ -95,7 +95,7 @@ public class TemplateWriter {
         private int getIndentation() {
             int i = 0;
             String line = lines.get(lines.size() - 1);
-            while(line.charAt(i) == '\t') {
+            while (line.charAt(i) == '\t') {
                 i++;
             }
             return i;

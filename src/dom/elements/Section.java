@@ -30,7 +30,7 @@ public class Section implements Element {
         // TODO determine if we really need these IDs for anything
         HTMLWriter.writeLine("<section"
                 + (className != null ? " class=\"" + className + "\"" : "")
-                + (ID != null ? " id=\"" + ID+ "\"" : "")
+                + (ID != null ? " id=\"" + ID + "\"" : "")
                 + ">");
         HTMLWriter.indent();
         subElements.forEach(Element::writeHTML);

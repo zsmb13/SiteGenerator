@@ -38,6 +38,21 @@ public abstract class Page {
     private boolean containsCode = false;
     private boolean post = false;
 
+    public Page(File sourceFile) {
+        PageDirectory.setCurrentPage(this);
+
+        if (sourceFile != null) {
+            MarkdownReader.readPageProps(sourceFile);
+            sections = MarkdownReader.readSections();
+        }
+
+        sitePath = createSitePath();
+        url = createURL();
+        fileName = createFilename();
+
+        PageDirectory.setCurrentPage(null);
+    }
+
     // Setters
     public void setShortTitle(String shortTitle) {
         this.shortTitle = shortTitle;
@@ -53,7 +68,7 @@ public abstract class Page {
     }
 
     public void setDescription(String description) {
-        if(this.description == null) {
+        if (this.description == null) {
             this.description = description;
         }
     }
@@ -65,13 +80,13 @@ public abstract class Page {
     public void setPost(boolean post) {
         this.post = post;
 
-        if(post) {
+        if (post) {
             PageDirectory.post(this);
         }
     }
 
     public void setLanguage(String language) {
-        if(ResourceFetcher.getStringList(StringLists.Languages).contains(language)) {
+        if (ResourceFetcher.getStringList(StringLists.Languages).contains(language)) {
             this.language = language;
         }
     }
@@ -79,22 +94,6 @@ public abstract class Page {
     public void setDate(String date) {
         String[] pieces = date.split(" ");
         this.date = pieces[0] + "." + pieces[1] + "." + pieces[2] + ".";
-    }
-
-
-    public Page(File sourceFile) {
-        PageDirectory.setCurrentPage(this);
-
-        if(sourceFile != null) {
-            MarkdownReader.readPageProps(sourceFile);
-            sections = MarkdownReader.readSections();
-        }
-
-        sitePath = createSitePath();
-        url = createURL();
-        fileName = createFilename();
-
-        PageDirectory.setCurrentPage(null);
     }
 
     // Getters
@@ -149,14 +148,14 @@ public abstract class Page {
 
         TemplateWriter.write(1);
 
-        if(containsCode) {
+        if (containsCode) {
             HTMLWriter.writeLine(ResourceFetcher.getString(
                     Strings.CodeHighlightStylesheet));
         }
 
         TemplateWriter.write(2);
 
-        if(containsCode) {
+        if (containsCode) {
             HTMLWriter.writeLines(ResourceFetcher.getStringList(
                     StringLists.CodeHighlightScript));
         }
@@ -189,13 +188,13 @@ public abstract class Page {
     }
 
     public String getCategoriesString() {
-        if(categories.isEmpty()) {
+        if (categories.isEmpty()) {
             return "";
         }
 
         String temp = categories.get(0).toString();
 
-        for(int i = 1; i < categories.size(); i++) {
+        for (int i = 1; i < categories.size(); i++) {
             temp += " / " + categories.get(i).toString();
         }
 

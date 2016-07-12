@@ -6,6 +6,26 @@ package dom.roots;
 public enum Category {
     Tutorial, Article, NewProject, SiteNews, TestCategory;
 
+    public static Category parse(String catDesc) {
+        switch (catDesc.toLowerCase()) {
+            case "article":
+                return Article;
+            case "tutorial":
+                return Tutorial;
+            case "project":
+            case "newproject":
+                return NewProject;
+            case "test":
+                return TestCategory;
+            case "site":
+            case "sitenews":
+                return SiteNews;
+            default:
+                System.err.println("Can't parse category description");
+                return null;
+        }
+    }
+
     //TODO consider moving this to a resource file?
     @Override
     public String toString() {
@@ -22,26 +42,6 @@ public enum Category {
                 return "Tutorial";
             default:
                 return "Unknown category";
-        }
-    }
-
-    public static Category parse(String catDesc) {
-        switch(catDesc.toLowerCase()) {
-            case "article":
-                return Article;
-            case "tutorial":
-                return Tutorial;
-            case "project":
-            case "newproject":
-                return NewProject;
-            case "test":
-                return TestCategory;
-            case "site":
-            case "sitenews":
-                return SiteNews;
-            default:
-                System.err.println("Can't parse category description");
-                return null;
         }
     }
 }

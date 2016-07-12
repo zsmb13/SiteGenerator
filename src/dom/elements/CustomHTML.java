@@ -12,11 +12,6 @@ public class CustomHTML implements Element {
 
     private List<String> lines;
 
-    @Override
-    public void writeHTML() {
-        HTMLWriter.writeLines(lines);
-    }
-
     public CustomHTML(String line) {
         lines = new ArrayList<>();
         lines.add(line);
@@ -24,6 +19,11 @@ public class CustomHTML implements Element {
 
     public CustomHTML(List<String> lines) {
         this.lines = lines;
+    }
+
+    @Override
+    public void writeHTML() {
+        HTMLWriter.writeLines(lines);
     }
 
 }

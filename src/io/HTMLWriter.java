@@ -25,7 +25,11 @@ public class HTMLWriter {
     }
 
     public static void prepareToWrite(Page p) {
-        String filename = p.getSitePath() + p.getFileName();
+        // TODO this is temporary for testing
+        //String filename = p.getSitePath() + p.getFileName();
+        String filename = "output/" + p.getSitePath() + p.getFileName();
+
+        // TODO directory creation if necessary
 
         try {
             System.out.println(filename);

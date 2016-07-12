@@ -30,9 +30,9 @@ public class Image implements Element {
     public void writeHTML() {
         String imageHTML =
                 "<img " +
-                (isLarge ? "class=\"articleimage\" " : "") +
-                "alt=\"" + altText + "\" " +
-                "src=\"" + imgPath + "\">";
+                        (isLarge ? "class=\"articleimage\" " : "") +
+                        "alt=\"" + altText + "\" " +
+                        "src=\"" + imgPath + "\">";
 
         HTMLWriter.writeLine(imageHTML);
     }

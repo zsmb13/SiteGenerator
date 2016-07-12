@@ -62,10 +62,10 @@ public class TextHelper {
     private static String createLinkHTML(String text, String link, String icon, String hover) {
         boolean isExternal = link.charAt(0) != '/';
 
-        if(icon == null) {
+        if (icon == null) {
             icon = isExternal ? "fa-external-link" : "fa-link";
         }
-        if(hover == null) {
+        if (hover == null) {
             hover = link;
         }
 
@@ -73,7 +73,7 @@ public class TextHelper {
         String firstWord;
         String restOfText;
 
-        if(firstSpace == -1) {
+        if (firstSpace == -1) {
             firstWord = text;
             restOfText = "";
         }
@@ -118,12 +118,12 @@ public class TextHelper {
 
     public static String hyphenate(String s) {
         String temp = "";
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
-            if(isAlphaNum(c)) {
+            if (isAlphaNum(c)) {
                 temp = temp + c;
             }
-            else if(c == ' ' || c == '-' || c == '_') {
+            else if (c == ' ' || c == '-' || c == '_') {
                 temp = temp + '-';
             }
         }

@@ -1,6 +1,5 @@
 package dom.elements;
 
-import dom.roots.Page;
 import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.MarkdownReader;

@@ -6,10 +6,8 @@ import dom.elements.Section;
 import io.HTMLWriter;
 import io.TemplateWriter;
 import resources.ResourceFetcher;
-import resources.StringLists;
 import resources.Strings;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**

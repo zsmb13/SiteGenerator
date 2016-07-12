@@ -1,6 +1,5 @@
 package dom.elements;
 
-import dom.roots.Page;
 import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.TextHelper;
@@ -22,7 +21,7 @@ public class Header implements Element {
         String headerText;
 
         // If the string begins with double # or double @
-        if(firstLine.charAt(0) == firstLine.charAt(1)) {
+        if (firstLine.charAt(0) == firstLine.charAt(1)) {
             PageDirectory.prepareForDesc();
             headerText = firstLine.substring(2).trim();
         }
@@ -31,7 +30,7 @@ public class Header implements Element {
         }
 
         // If the header is a large header
-        if(firstLine.charAt(0) == '@'){
+        if (firstLine.charAt(0) == '@') {
             return new Header(headerText, 2);
         }
         else {
