@@ -24,6 +24,12 @@ public class IndexPage extends CustomPage {
 
         //TODO extract to resource
         description = "The index page of the website";
+
+        // TODO make nicer?
+        // Override grandparent ctor
+        sitePath = createSitePath();
+        url = createURL();
+        fileName = createFilename();
     }
 
     public static List<IndexPage> create() {
@@ -118,7 +124,7 @@ public class IndexPage extends CustomPage {
                 "</h5>",
                 "<a href=\"" + p.getUrl() + "\">",
                 "<img class=\"articleimage\" " +
-                        "src=\"/images/" + TextHelper.simplify(p.getShortTitle()) + "_ban.png " +
+                        "src=\"/images/" + TextHelper.simplify(p.getShortTitle()) + "_ban.png\" " +
                         "alt=\"" + postName + "\">",
                 "</a>",
                 "<p>" + p.getDescription() + " <a href=\"" + p.getUrl() + "\">Read more...</a></p>"

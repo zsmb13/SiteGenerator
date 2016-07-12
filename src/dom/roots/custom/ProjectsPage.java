@@ -6,6 +6,7 @@ import io.TextHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -49,12 +50,14 @@ public class ProjectsPage extends CustomPage {
         String simpleTitle = TextHelper.simplify(p.getShortTitle());
 
         String[] lines = {
-                "\t<a href=\"" + p.getUrl() + "\">",
-                "\t<img class=\"projectlang\" src=\"/images/lang_" + p.getLanguage() + ".png\">",
-                "\t<img class=\"projectbg\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
-                "\t<img class=\"projectimage\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
-                "\t<h4>" + p.getTitle().toLowerCase() + "</h4>",
-                "\t</a>"
+                "\t<div class=\"projectbox\">",
+                "\t\t<a href=\"" + p.getUrl() + "\">",
+                "\t\t<img class=\"projectlang\" src=\"/images/lang_" + p.getLanguage() + ".png\">",
+                "\t\t<img class=\"projectbg\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
+                "\t\t<img class=\"projectimage\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
+                "\t\t<h4>" + p.getTitle().toLowerCase() + "</h4>",
+                "\t\t</a>",
+                "\t</div>"
         };
 
         return new CustomHTML(Arrays.asList(lines));
@@ -84,6 +87,13 @@ public class ProjectsPage extends CustomPage {
             this.name = name;
             this.description = description;
             this.projects = projects;
+
+            this.projects.sort(new Comparator<Project>() {
+                @Override
+                public int compare(Project o1, Project o2) {
+                    return o2.getDate().compareTo(o1.getDate());
+                }
+            });
         }
     }
 

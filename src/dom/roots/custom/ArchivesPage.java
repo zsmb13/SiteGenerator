@@ -40,7 +40,7 @@ public class ArchivesPage extends CustomPage {
 
         // Kittens
         Section kittenSection = new Section(null, "kittens");
-        archiveSection.add(new CustomHTML(ResourceFetcher.getStringList(StringLists.ArchiveKittens)));
+        kittenSection.add(new CustomHTML(ResourceFetcher.getStringList(StringLists.ArchiveKittens)));
 
         // Add created sections
         sections.add(archiveSection);

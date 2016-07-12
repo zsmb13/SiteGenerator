@@ -35,7 +35,7 @@ public class HTMLWriter {
         }
 
         try {
-            System.out.println(filename);
+            System.out.println("Writing file: " + filename);
             pw = new PrintWriter(new File(filename));
         } catch (FileNotFoundException e) {
             System.err.println("HTMLWriter error: can not open file for writing.");
