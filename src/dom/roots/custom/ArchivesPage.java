@@ -5,7 +5,6 @@ import dom.elements.Element;
 import dom.elements.Section;
 import dom.roots.Page;
 import dom.roots.PageDirectory;
-import dom.roots.Project;
 import resources.ResourceFetcher;
 import resources.StringLists;
 
@@ -52,9 +51,9 @@ public class ArchivesPage extends CustomPage {
     private static Element createRow(Page p) {
         String[] lines = {
                 "<tr>",
-                "<td class=\"articletable\"><a href=\"" + p.getUrl() + "\">" + p.getPostTitle() + "</a></td>",
-                "<td>" + p.getCategoriesString() + "</td>",
-                "<td>" + p.getDate() + "</td>",
+                "\t<td class=\"articletable\"><a href=\"" + p.getUrl() + "\">" + p.getPostTitle() + "</a></td>",
+                "\t<td>" + p.getCategoriesString() + "</td>",
+                "\t<td>" + p.getDate() + "</td>",
                 "</tr>"
         };
 

@@ -82,23 +82,26 @@ public class IndexPage extends CustomPage {
         // There is more than one page
         if (lastIndex > 0) {
             List<String> navigation = new ArrayList<>();
-            navigation.add("<section class=\"index\" id=\"indexnav\">");
 
+            //TODO look at this in detail, it looks fishy for the case of just one index page
             // This is the first page
             if (index == 0) {
                 navigation.add("<div id=\"navsingle\">");
                 navigation.add("<a href=\"" + nextPageLink(index, lastIndex) + "\" class=\"menubutton\">Older posts</a>");
+                navigation.add("</div>");
             }
             // This is the last page
             else if (index == lastIndex) {
                 navigation.add("<div id=\"navsingle\">");
                 navigation.add("<a href=\"" + prevPageLink(index) + "\" class=\"menubutton\">Newer posts</a>");
+                navigation.add("</div>");
             }
             // This is one of the middle pages
             else {
                 navigation.add("<div id=\"navdouble\">");
                 navigation.add("<a href=\"" + prevPageLink(index) + "\" class=\"menubutton\">Newer posts</a>");
                 navigation.add("<a href=\"" + nextPageLink(index, lastIndex) + "\" class=\"menubutton\">Older posts</a>");
+                navigation.add("</div>");
             }
 
             Section navSection = new Section("index", "indexnav");

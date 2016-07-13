@@ -16,12 +16,17 @@ public class Code implements Element {
 
     //private static String[] languages = {"c", "cpp", "cs", "java"};
     private static List<String> languages = ResourceFetcher.getStringList(StringLists.Languages);
-    private List<String> lines = new ArrayList<>();
+    private List<String> lines;
     private String language;
 
     public Code(List<String> lines, String language) {
-        this.lines = lines;
         this.language = language;
+        this.lines = new ArrayList<>();
+
+        for (String line : lines) {
+            String escapedLine = line.replace("<", "&lt;").replace(">", "&gt;");
+            this.lines.add(escapedLine);
+        }
     }
 
     public static Code create(String firstLine) {

@@ -1,6 +1,5 @@
 package dom.elements;
 
-import dom.roots.PageDirectory;
 import io.HTMLWriter;
 import io.MarkdownReader;
 import io.TextHelper;
@@ -36,7 +35,7 @@ public class List implements Element {
             entries.add(entry);
             firstLine = MarkdownReader.readLine();
 
-            if(firstLine == null) {
+            if (firstLine == null) {
                 break;
             }
         }

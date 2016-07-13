@@ -62,6 +62,9 @@ public class TextHelper {
     private static String createLinkHTML(String text, String link, String icon, String hover) {
         boolean isExternal = link.charAt(0) != '/';
 
+        // Process escaped closing parentheses in url
+        link = link.replace("\\)", ")");
+
         if (icon == null) {
             icon = isExternal ? "fa-external-link" : "fa-link";
         }

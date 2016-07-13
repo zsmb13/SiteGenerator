@@ -15,7 +15,7 @@ public class Project extends Page {
 
         hasBanner = true;
 
-        if(categories == null) {
+        if (categories == null) {
             categories = new ArrayList<>();
         }
         categories.add(Category.NewProject);

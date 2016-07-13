@@ -30,7 +30,7 @@ public class HTMLWriter {
         String filename = "output/" + p.getSitePath() + p.getFileName();
 
         File outputFile = new File("output/" + p.getSitePath());
-        if(!outputFile.exists()) {
+        if (!outputFile.exists()) {
             outputFile.mkdirs();
         }
 

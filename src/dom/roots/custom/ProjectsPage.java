@@ -52,7 +52,7 @@ public class ProjectsPage extends CustomPage {
         String[] lines = {
                 "\t<div class=\"projectbox\">",
                 "\t\t<a href=\"" + p.getUrl() + "\">",
-                "\t\t<img class=\"projectlang\" src=\"/images/lang_" + p.getLanguage() + ".png\">",
+                "\t\t<img class=\"projectlang\" src=\"/images/lang_" + p.getLanguage() + ".png\" alt=\"" + p.getTitle() + "\">",
                 "\t\t<img class=\"projectbg\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
                 "\t\t<img class=\"projectimage\" src=\"/images/" + simpleTitle + "_pr.png\" alt=\"" + p.getTitle() + "\">",
                 "\t\t<h4>" + p.getTitle().toLowerCase() + "</h4>",
