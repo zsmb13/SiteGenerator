@@ -34,19 +34,26 @@ public class Main {
         List<File> abandonedProjectFiles = getSourceFilesFromDir("projects/abandoned/");
         List<File> completedProjectFiles = getSourceFilesFromDir("projects/completed/");
 
+        System.out.println("Read source files");
+
         List<Article> articles = new ArrayList<>();
         List<Project> abandonedProjects = new ArrayList<>();
         List<Project> completedProjects = new ArrayList<>();
 
+        System.out.println("Created lists for storage");
+
         for (File f : articleFiles) {
             articles.add(new Article(f));
         }
+        System.out.println("Created articles");
         for (File f : abandonedProjectFiles) {
             abandonedProjects.add(new Project(f));
         }
+        System.out.println("Created abandoned projects");
         for (File f : completedProjectFiles) {
             completedProjects.add(new Project(f));
         }
+        System.out.println("Created completed projects");
 
         List<Page> pages = new ArrayList<>();
         pages.addAll(articles);
@@ -58,15 +65,19 @@ public class Main {
 
         AboutPage aboutPage = new AboutPage();
         pages.add(aboutPage);
+        System.out.println("Created about page");
 
         ArchivesPage archivesPage = ArchivesPage.create();
         pages.add(archivesPage);
+        System.out.println("Created archives page");
 
         List<IndexPage> indexPages = IndexPage.create();
         pages.addAll(indexPages);
+        System.out.println("Created index pages");
 
         LostPage lostPage = new LostPage();
         pages.add(lostPage);
+        System.out.println("Created lost page");
 
         //TODO extract to resource
         ProjectsPage.ProjectCategory completed = new ProjectsPage.ProjectCategory(
@@ -80,7 +91,7 @@ public class Main {
         categories.add(abandoned);
         ProjectsPage projectsPage = ProjectsPage.create(categories);
         pages.add(projectsPage);
-
+        System.out.println("Created projects page");
 
         // Write everything
 
