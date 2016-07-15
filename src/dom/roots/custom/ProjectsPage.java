@@ -3,6 +3,8 @@ package dom.roots.custom;
 import dom.elements.*;
 import dom.roots.Project;
 import io.TextHelper;
+import resources.ResourceFetcher;
+import resources.Strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +18,7 @@ public class ProjectsPage extends CustomPage {
     private ProjectsPage(List<Section> sections) {
         this.sections = sections;
 
-        //TODO extract to resource
-        description = "the projects page";
+        description = ResourceFetcher.getString(Strings.ProjectsDesc);
     }
 
     public static ProjectsPage create(List<ProjectCategory> categories) {

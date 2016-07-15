@@ -5,7 +5,10 @@ import dom.elements.Section;
 import dom.roots.Page;
 import dom.roots.PageDirectory;
 import io.TextHelper;
+import resources.ResourceFetcher;
+import resources.Strings;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +25,7 @@ public class IndexPage extends CustomPage {
         this.sections = sections;
         this.index = index;
 
-        //TODO extract to resource
-        description = "The index page of the website";
+        description = ResourceFetcher.getString(Strings.IndexDesc);
 
         // TODO make nicer?
         // Override grandparent ctor
@@ -142,7 +144,7 @@ public class IndexPage extends CustomPage {
         if (index == 0) {
             return "/";
         }
-        //TODO ensure this function is actually called
+
         return "/page/" + (index + 1) + "/";
     }
 

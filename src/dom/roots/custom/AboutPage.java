@@ -3,6 +3,7 @@ package dom.roots.custom;
 import resources.ResourceFetcher;
 import resources.Strings;
 
+import javax.annotation.Resource;
 import java.io.File;
 
 /**
@@ -13,8 +14,7 @@ public class AboutPage extends CustomPage {
     public AboutPage() {
         super(new File(ResourceFetcher.getString(Strings.SourceDir) + "about.txt"));
 
-        //TODO extract to resource
-        description = "The about page of the website.";
+        description = ResourceFetcher.getString(Strings.AboutDesc);
     }
 
     @Override

@@ -60,8 +60,6 @@ public class Main {
         pages.addAll(abandonedProjects);
         pages.addAll(completedProjects);
 
-        //TODO create directories if they don't exist
-
 
         AboutPage aboutPage = new AboutPage();
         pages.add(aboutPage);

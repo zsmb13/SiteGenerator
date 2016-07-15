@@ -7,6 +7,7 @@ import dom.roots.Page;
 import dom.roots.PageDirectory;
 import resources.ResourceFetcher;
 import resources.StringLists;
+import resources.Strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +20,7 @@ public class ArchivesPage extends CustomPage {
     private ArchivesPage(List<Section> sections) {
         this.sections = sections;
 
-        //TODO extract to resource
-        description = "The archives page of the website.";
+        description = ResourceFetcher.getString(Strings.ArchivesDesc);
     }
 
     public static ArchivesPage create() {

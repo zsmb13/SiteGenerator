@@ -150,7 +150,7 @@ public class MarkdownReader {
      * @return the parsed element
      */
     private static Element parseSingleChar(String line) {
-        // Preparse common simple paragraphs as they are very frequent
+        // Pre-parse common simple paragraphs as they are very frequent
         if (Character.isAlphabetic(line.charAt(0))) {
             return Paragraph.create(line);
         }

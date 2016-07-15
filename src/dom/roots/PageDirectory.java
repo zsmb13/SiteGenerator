@@ -48,7 +48,6 @@ public class PageDirectory {
         postedPages.sort(new Comparator<Page>() {
             @Override
             public int compare(Page o1, Page o2) {
-                //TODO check if this is right or should be the other way around
                 return o2.getDate().compareTo(o1.getDate());
             }
         });

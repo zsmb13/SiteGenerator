@@ -25,8 +25,7 @@ public class HTMLWriter {
     }
 
     public static void prepareToWrite(Page p) {
-        // TODO this is temporary for testing
-        //String filename = p.getSitePath() + p.getFileName();
+        //TODO extract outputdir to resource?
         String filename = "output/" + p.getSitePath() + p.getFileName();
 
         File outputFile = new File("output/" + p.getSitePath());

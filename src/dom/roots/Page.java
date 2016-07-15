@@ -63,7 +63,6 @@ public abstract class Page {
     }
 
     public void setCategories(List<Category> categories) {
-        //TODO maybe check?
         this.categories = categories;
     }
 
@@ -99,8 +98,6 @@ public abstract class Page {
     // Getters
 
     public String getFileName() {
-        // TODO implements things here
-        // TODO This is a placeholder function
         return fileName;
     }
 
