@@ -3,7 +3,6 @@ package dom.roots.custom;
 import resources.ResourceFetcher;
 import resources.Strings;
 
-import javax.annotation.Resource;
 import java.io.File;
 
 /**

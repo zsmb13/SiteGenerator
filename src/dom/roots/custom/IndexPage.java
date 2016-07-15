@@ -8,7 +8,6 @@ import io.TextHelper;
 import resources.ResourceFetcher;
 import resources.Strings;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
