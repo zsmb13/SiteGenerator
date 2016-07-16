@@ -1,5 +1,6 @@
 package io;
 
+import com.sun.istack.internal.NotNull;
 import dom.elements.*;
 import dom.roots.Category;
 import dom.roots.Page;
@@ -26,6 +27,8 @@ public class MarkdownReader {
      * @return the line
      */
     public static String readLine() {
+        //TODO make function never return null
+
         if (!cachedLines.isEmpty()) {
             return cachedLines.remove(0);
         }

@@ -6,5 +6,5 @@ package resources;
 public enum Strings {
     SourceDir,
     LostDesc, LostHeader, LostText,
-    AboutDesc, IndexDesc, ProjectsDesc, ArchivesDesc, CodeHighlightStylesheet
+    AboutDesc, IndexDesc, ProjectsDesc, ArchivesDesc, CompletedPrDesc, AbandonedPrDesc, CodeHighlightStylesheet
 }

@@ -79,10 +79,10 @@ public class Main {
 
         //TODO extract to resource
         ProjectsPage.ProjectCategory completed = new ProjectsPage.ProjectCategory(
-                "Completed projects", "This is the description of the completed projects", completedProjects
+                "Completed projects", ResourceFetcher.getString(Strings.CompletedPrDesc), completedProjects
         );
         ProjectsPage.ProjectCategory abandoned = new ProjectsPage.ProjectCategory(
-                "Abandoned projects", "This is the description of the abandoned projects", abandonedProjects
+                "Abandoned projects", ResourceFetcher.getString(Strings.AbandonedPrDesc), abandonedProjects
         );
         List<ProjectsPage.ProjectCategory> categories = new ArrayList<>();
         categories.add(completed);

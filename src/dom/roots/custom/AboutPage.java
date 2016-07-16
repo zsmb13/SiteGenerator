@@ -11,6 +11,7 @@ import java.io.File;
 public class AboutPage extends CustomPage {
 
     public AboutPage() {
+        // This page is built from a markdown text file
         super(new File(ResourceFetcher.getString(Strings.SourceDir) + "about.txt"));
 
         description = ResourceFetcher.getString(Strings.AboutDesc);
