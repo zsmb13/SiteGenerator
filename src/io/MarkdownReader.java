@@ -1,6 +1,5 @@
 package io;
 
-import com.sun.istack.internal.NotNull;
 import dom.elements.*;
 import dom.roots.Category;
 import dom.roots.Page;
@@ -154,7 +153,7 @@ public class MarkdownReader {
      */
     private static Element parseSingleChar(String line) {
         // Pre-parse common simple paragraphs as they are very frequent
-        if (Character.isAlphabetic(line.charAt(0))) {
+        if (Character.isAlphabetic(line.charAt(0)) && Character.isUpperCase(line.charAt(0))) {
             return Paragraph.create(line);
         }
 

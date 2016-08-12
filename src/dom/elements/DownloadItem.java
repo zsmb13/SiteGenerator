@@ -48,6 +48,7 @@ public class DownloadItem implements Element {
 
     /**
      * Helper function: writes the given String to the HTML output as a table cell
+     *
      * @param content the String to write
      */
     private void writeCell(String content) {
