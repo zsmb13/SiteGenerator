@@ -87,7 +87,7 @@ public class TextHelper {
 
         return "<a href=\"" + link + "\"" +
                 " title=\"" + hover + "\"" +
-                (isExternal ? " target=\"_blank\"" : "") +
+                (isExternal ? " target=\"_blank\" rel=\"noopener noreferrer\"" : "") +
                 "><span class=\"nowrap\">" +
                 "<i class=\"fa " + icon + "\"></i>&nbsp;" +
                 firstWord + "</span>" + restOfText + "</a>";
